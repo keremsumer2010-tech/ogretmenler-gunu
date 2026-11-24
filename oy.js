@@ -4,7 +4,7 @@
 // "açıklandı mı" bilgisi birkaç saniyede bir kısa bir sorguyla okunur.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-import { FIREBASE_CONFIG } from "./fb-config.js";
+import { FIREBASE_CONFIG } from "./fb-config.js?v=5";
 
 const DB = FIREBASE_CONFIG.databaseURL;
 const auth = getAuth(initializeApp(FIREBASE_CONFIG));

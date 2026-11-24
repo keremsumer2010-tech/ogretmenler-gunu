@@ -169,9 +169,9 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
   <div><h1>Telefonunla okut, <em>hocalarını</em> tahmin et!</h1><div class="qr" id="qrBig"></div><p id="joinUrl2"></p></div>
 </div>
 
-<script src="sorular.js"></script>
+<script src="sorular.js?v=5"></script>
 <script type="module">
-import { db, auth, googleLogin, onAuthStateChanged, ref, get, set, remove, onValue, signOut } from "./fb.js";
+import { db, auth, googleLogin, onAuthStateChanged, ref, get, set, remove, onValue, signOut } from "./fb.js?v=5";
 const $ = s => document.querySelector(s);
 const Q = window.SORULAR, C = ["#e8414f", "#2f7fd6"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));

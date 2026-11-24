@@ -3,7 +3,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getDatabase, ref, set, get, remove, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
-import { FIREBASE_CONFIG } from "./fb-config.js";
+import { FIREBASE_CONFIG } from "./fb-config.js?v=5";
 
 const app = initializeApp(FIREBASE_CONFIG);
 export const db = getDatabase(app);
