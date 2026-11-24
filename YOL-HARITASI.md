@@ -526,17 +526,17 @@ Sayılarla değil, anlarla:
 ## 24. Senden beklenenler (yapılacaklar listesi)
 
 1. **Gerçek cevaplar:** her soru için hangi hoca doğru? (`index.html` başındaki `QUESTIONS` listesinde `answer`: `0` ilk isim, `1` ikinci isim.)
-2. **Eksik soyadları:** Saip, Buğu, Nurhan, Çilem.
+2. ~~Eksik soyadları~~ — tamamlandı.
 3. **İzinler:** öğretmenlerin isimlerinin ve bu bilgilerin herkese açık sitede olmasına onay.
 4. **(İsteğe bağlı) Hoca fotoğrafları:** `img/hocalar/` klasörüne, aşağıdaki adlarla:
 
 | Öğretmen | Dosya adı |
 |---|---|
-| Saip … | `saip.jpg` |
+| Saip Bülent Yaşar | `saip-bulent-yasar.jpg` |
 | Özlem Yılmaz | `ozlem-yilmaz.jpg` |
-| Buğu … | `bugu.jpg` |
-| Nurhan … | `nurhan.jpg` |
-| Çilem … | `cilem.jpg` |
+| Buğu İzlem | `bugu-izlem.jpg` |
+| Nurhan Genç | `nurhan-genc.jpg` |
+| Çilem Dişli | `cilem-disli.jpg` |
 | Meryem Tufanoğlu | `meryem-tufanoglu.jpg` |
 | Mutlu Demirbaş | `mutlu-demirbas.jpg` |
 | Pınar Karataş | `pinar-karatas.jpg` |
@@ -551,7 +551,7 @@ Sayılarla değil, anlarla:
 | Meltem Çimen Savaş | `meltem-cimen-savas.jpg` |
 | Yankı Kurt | `yanki-kurt.jpg` |
 
-> Dosya adı kuralı: Türkçe harfler sadeleşir (ç→c, ğ→g, ı→i, ö→o, ş→s, ü→u), boşluk yerine tire, hepsi küçük harf. Soyadı eksik olanlarda sadece ad.
+> Dosya adı kuralı: Türkçe harfler sadeleşir (ç→c, ğ→g, ı→i, ö→o, ş→s, ü→u), boşluk yerine tire, hepsi küçük harf.
 
 5. **(İsteğe bağlı) Paylaşım görseli:** 1200×630 bir `og.jpg`.
 6. **Telefonunda ve okulun akıllı tahtasında bir kez dene.**
