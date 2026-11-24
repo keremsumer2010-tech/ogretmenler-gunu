@@ -171,7 +171,7 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
 
 <script src="sorular.js"></script>
 <script type="module">
-import { db, auth, googleLogin, currentUser, ref, get, remove, onValue, signOut } from "./fb.js";
+import { db, auth, googleLogin, currentUser, ref, get, set, remove, onValue, signOut } from "./fb.js";
 const $ = s => document.querySelector(s);
 const Q = window.SORULAR, C = ["#e8414f", "#2f7fd6"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
@@ -209,12 +209,17 @@ addEventListener("keydown", e => { if(e.key === "Escape") $("#zoom").classList.a
 
 /* ---------- Canlı oylar ---------- */
 function start(){
-  stop = onValue(ref(db, "votes"), s => { votes = s.val() || {}; render(); }, e => { $("#grid").innerHTML = `<div class="empty">Oylar okunamadı: ${esc(e.message)}</div>`; });
+  const s1 = onValue(ref(db, "votes"), s => { votes = s.val() || {}; render(); }, e => { $("#grid").innerHTML = `<div class="empty">Oylar okunamadı: ${esc(e.message)}</div>`; });
+  const s2 = onValue(ref(db, "reveal"), s => {
+    const r = s.val() || {}; shown.clear(); Object.keys(r).forEach(k => r[k] && shown.add(+k));
+    if($("#t0")){ applyShown(); render(); }
+  });
+  stop = () => { s1(); s2(); };
 }
 // Kartlar bir kez çizilir, sonra yalnızca sayılar güncellenir (titreme olmasın)
-// Doğru cevaplar gizli başlar; yönetici butona basınca açılır (bu cihazda hatırlanır)
-const shown = new Set(JSON.parse(localStorage.getItem("acikCevaplar") || "[]"));
-const saveShown = () => localStorage.setItem("acikCevaplar", JSON.stringify([...shown]));
+// Doğru cevaplar gizli başlar; yönetici butona basınca açılır. Açılma bilgisi Firebase'de
+// (reveal/{soru}) tutulur, böylece öğrencilerin telefonunda da aynı anda açılır.
+const shown = new Set();
 function build(){
   $("#grid").innerHTML = Q.map((d, i) => `<div class="card q" id="q${i}" style="animation-delay:${i * .04}s">
       <div class="head"><img src="img/${d.icon}.png" alt=""><div><small>SORU ${String(i + 1).padStart(2, "0")}</small><h3>${esc(d.q)}</h3></div>
@@ -235,12 +240,16 @@ function applyShown(){
   });
   $("#revealAll").textContent = shown.size === Q.length ? "Tüm cevapları gizle" : "Tüm cevapları göster";
 }
+const failSave = e => alert("Kaydedilemedi: " + e.message);
 function toggle(i){
-  if(shown.has(i)) shown.delete(i);
-  else{ shown.add(i); const c = $("#q" + i); c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
-  saveShown(); applyShown(); render();
+  if(shown.has(i)){ remove(ref(db, `reveal/${i}`)).catch(failSave); return; }
+  const c = $("#q" + i); c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop");
+  set(ref(db, `reveal/${i}`), true).catch(failSave);
 }
-$("#revealAll").onclick = () => { if(shown.size === Q.length) shown.clear(); else Q.forEach((_, i) => shown.add(i)); saveShown(); applyShown(); render(); };
+$("#revealAll").onclick = () => {
+  if(shown.size === Q.length) remove(ref(db, "reveal")).catch(failSave);
+  else set(ref(db, "reveal"), Object.fromEntries(Q.map((_, i) => [i, true]))).catch(failSave);
+};
 function render(){
   if(!$("#t0")) build();
   const people = new Set(); let total = 0, right = 0, shownTotal = 0;
@@ -273,8 +282,8 @@ $("#csvBtn").onclick = () => {
   a.download = "ogretmenler-gunu-sonuclar.csv"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 3000);
 };
 $("#resetBtn").onclick = async () => {
-  if(!confirm("Tüm oylar kalıcı olarak silinecek. Bu geri alınamaz. Emin misin?")) return;
-  try{ await remove(ref(db, "votes")); }catch(e){ alert("Silinemedi: " + e.message); }
+  if(!confirm("Tüm oylar kalıcı olarak silinecek ve açıklanan cevaplar yeniden gizlenecek. Bu geri alınamaz. Emin misin?")) return;
+  try{ await remove(ref(db, "votes")); await remove(ref(db, "reveal")); }catch(e){ alert("Silinemedi: " + e.message); }
 };
 
 currentUser().then(route);
