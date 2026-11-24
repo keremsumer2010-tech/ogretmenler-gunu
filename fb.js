@@ -1,18 +1,11 @@
-// Firebase bağlantısı. Bu ayarlar herkese açık olacak şekilde tasarlanmıştır;
-// asıl koruma veritabanı güvenlik kurallarındadır (database.rules.json).
+// Yönetici paneli için Firebase bağlantısı (canlı, kalıcı bağlantı kullanır).
+// Öğrenci tarafı kalıcı bağlantı açmaz, bkz. oy.js.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getDatabase, ref, set, get, remove, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { FIREBASE_CONFIG } from "./fb-config.js";
 
-const app = initializeApp({
-  apiKey: "AIzaSyAaEmfQccNjsTGMK0uPIdjLfnWafG_C6vY",
-  authDomain: "ogretmenler-gunu-6ac60.firebaseapp.com",
-  databaseURL: "https://ogretmenler-gunu-6ac60-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "ogretmenler-gunu-6ac60",
-  storageBucket: "ogretmenler-gunu-6ac60.firebasestorage.app",
-  messagingSenderId: "538852037209",
-  appId: "1:538852037209:web:f786f548216a95fc5dd748"
-});
+const app = initializeApp(FIREBASE_CONFIG);
 export const db = getDatabase(app);
 export const auth = getAuth(app);
 
