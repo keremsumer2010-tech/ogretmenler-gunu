@@ -97,6 +97,60 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
 .q .foot b{color:var(--green)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);font-weight:800;padding:40px}
 
+/* Üst şerit: kısa göstergeler ve menü */
+.kpis{display:flex;gap:10px;margin-left:10px}
+.kpi{background:#fff;border-radius:14px;padding:6px 14px;box-shadow:var(--sh-sm);min-width:92px}
+.kpi small{display:block;font-weight:900;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kpi b{font-family:var(--serif);font-weight:800;font-size:24px;line-height:1.1}
+.kpi b.pulse{display:inline-block;animation:pop .45s var(--spring)}
+.btn.sm{padding:10px 16px;font-size:14px}
+.more{position:relative}
+.more summary{list-style:none;cursor:pointer;padding:10px 14px}
+.more summary::-webkit-details-marker{display:none}
+.menu{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border-radius:16px;box-shadow:var(--sh-lg);padding:8px;z-index:20;min-width:240px;display:grid;gap:2px}
+.menu button{font-family:var(--sans);font-weight:800;font-size:14.5px;text-align:left;border:none;background:none;padding:11px 14px;border-radius:10px;cursor:pointer;color:var(--ink)}
+.menu button:hover{background:#fbf0ea}
+.menu #resetBtn{color:var(--red)}
+
+/* Tek tek sunum görünümü */
+#single{max-width:1080px;margin:0 auto}
+.snav{display:flex;justify-content:space-between;align-items:center;margin:4px 6px 12px;font-weight:900;letter-spacing:.14em;font-size:13.5px;color:var(--red)}
+.snav #sTot{letter-spacing:0;font-size:16px;color:var(--ink2)}
+.scard{padding:34px 42px 30px}
+.scard.slide{animation:slideIn .45s var(--spring)}
+@keyframes slideIn{from{opacity:0;transform:translateX(var(--dx,50px))}}
+.shead{display:flex;gap:22px;align-items:center;margin-bottom:22px}
+.shead img{width:92px;height:92px;flex:none;filter:drop-shadow(0 12px 10px rgba(90,40,20,.22))}
+.shead h2{font-size:clamp(28px,3.3vw,46px);font-weight:800}
+.srow{margin-top:14px;padding:10px 16px;margin-left:-16px;margin-right:-16px;border-radius:18px;transition:opacity .35s,background .35s,box-shadow .35s}
+.srow .top{display:flex;align-items:center;gap:14px;font-weight:800;font-size:clamp(18px,1.9vw,25px)}
+.srow .av{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:900;font-size:17px;overflow:hidden;background:var(--c)}
+.srow .av img{width:100%;height:100%;object-fit:cover}
+.srow .nm{flex:1}
+.srow .ok{display:none;font-size:12px;font-weight:900;color:#fff;background:var(--green);border-radius:999px;padding:4px 10px;letter-spacing:.06em}
+.srow .n{font-family:var(--serif);font-weight:800;font-size:36px;line-height:1}
+.srow .pct{color:var(--muted);width:66px;text-align:right}
+.srow .bar{height:24px;margin-top:10px}
+.scard.shown .srow.right{background:#eaf7f0;box-shadow:inset 0 0 0 3px var(--green)}
+.scard.shown .srow.right .nm{color:var(--green)}
+.scard.shown .srow.right .ok{display:inline-block;animation:pop .45s var(--spring)}
+.scard.shown .srow:not(.right){opacity:.45}
+.sfoot{margin-top:20px;font-weight:800;color:var(--ink2);font-size:17px}
+.sfoot b{color:var(--green);font-size:22px}
+.sctrl{display:flex;justify-content:center;gap:14px;margin-top:22px;flex-wrap:wrap}
+.sctrl .btn{font-size:18px;padding:15px 30px}
+.sctrl .btn:disabled{opacity:.35;cursor:default;transform:none}
+#sReveal{background:linear-gradient(180deg,#2fbf73,#1f9d5c);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 5px 0 #157246,0 14px 24px -12px rgba(31,157,92,.6)}
+#sReveal.on{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #efdcd2,0 4px 0 #efdcd2}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap}
+.dots button{width:36px;height:36px;border-radius:50%;border:none;background:#fff;box-shadow:var(--sh-sm);font-family:var(--sans);font-weight:900;color:var(--muted);cursor:pointer;transition:transform .25s var(--spring)}
+.dots button.done{box-shadow:inset 0 0 0 2.5px var(--green);color:var(--green)}
+.dots button.now{background:var(--red);color:#fff;transform:scale(1.15);box-shadow:var(--sh-sm)}
+.keys{text-align:center;color:var(--muted);font-weight:700;font-size:13px;margin-top:14px}
+.keys b{background:#fff;border-radius:6px;padding:1px 7px;box-shadow:inset 0 0 0 1px #ead8cf;color:var(--ink2)}
+@media (max-width:900px){ .kpis{order:5;width:100%;margin:6px 0 0} .kpi{flex:1;min-width:0} .scard{padding:24px 20px} .shead img{width:64px;height:64px} .keys{display:none} }
+@media (max-width:560px){ .sctrl .btn{flex:1;padding:14px 12px;font-size:15px} #sReveal{order:-1;flex-basis:100%} .srow .n{font-size:28px} }
+
 /* QR büyük */
 .zoom{position:fixed;inset:0;background:rgba(251,245,236,.97);z-index:50;display:grid;place-items:center;text-align:center;cursor:zoom-out;animation:up .3s ease}
 .zoom .qr{width:min(70vh,80vw);height:min(70vh,80vw);background:#fff;border-radius:28px;padding:0;overflow:hidden;box-shadow:var(--sh-lg);margin:0 auto}
@@ -140,28 +194,44 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
 <div class="hidden" id="vPanel">
   <header class="top">
     <div class="brand"><img src="img/clipboard.png" alt=""><div><span class="eyebrow">24 Kasım Öğretmenler Günü</span><b>Yönetici Paneli</b></div></div>
+    <div class="kpis">
+      <div class="kpi" title="En az bir soruyu cevaplayan kişi"><small>Katılan</small><b id="sPeople">0</b></div>
+      <div class="kpi" id="kpiVotes"><small>Toplam oy</small><b id="sVotes">0</b></div>
+      <div class="kpi" title="Açıklanan sorulardaki doğru cevap oranı"><small>Doğru oranı</small><b id="sRate">–</b></div>
+    </div>
     <div class="sp"></div>
     <span class="live"><i></i> Canlı</span>
-    <span class="who" id="who"></span>
-    <button class="btn ghost" id="logout">Çıkış</button>
+    <button class="btn sm" id="zoomBtn">QR'ı göster</button>
+    <button class="btn sm alt" id="viewBtn">Hepsini alt alta göster</button>
+    <details class="more"><summary class="btn sm alt">⋯</summary>
+      <div class="menu">
+        <button id="revealAll">Tüm cevapları göster</button>
+        <button id="csvBtn">Sonuçları indir (CSV)</button>
+        <button id="resetBtn">Oyları sıfırla</button>
+        <button id="logout">Çıkış (<span id="who"></span>)</button>
+      </div>
+    </details>
+    <span hidden><span id="sLast"></span><span id="qrSmall"></span><span id="joinUrl"></span></span>
   </header>
   <main>
-    <div class="stats">
-      <div class="card stat"><small>Katılan kişi</small><b id="sPeople">0</b><span>en az bir soruyu cevaplayan</span></div>
-      <div class="card stat" style="animation-delay:.05s"><small>Toplam oy</small><b id="sVotes">0</b><span id="sLast">henüz oy yok</span></div>
-      <div class="card stat" style="animation-delay:.1s"><small>Doğru oranı</small><b id="sRate">–</b><span>tüm cevaplarda</span></div>
-      <div class="card qrbox" style="animation-delay:.15s">
-        <div class="qr" id="qrSmall" title="Büyütmek için tıkla"></div>
-        <div><b>Katılım QR'ı</b><p id="joinUrl"></p><button class="btn alt" id="zoomBtn">Tahtada göster</button></div>
+    <!-- Tek tek sunum görünümü -->
+    <section id="single">
+      <div class="snav"><span id="sNo">SORU 01 / 13</span><span id="sTot">0 oy</span></div>
+      <div class="card scard" id="scard">
+        <div class="shead"><img id="sIcon" src="" alt=""><h2 id="sQ"></h2></div>
+        <div id="sOpts"></div>
+        <div class="sfoot" id="sFoot"></div>
       </div>
-    </div>
-    <div class="toolbar">
-      <h2>Sorular</h2>
-      <button class="btn" id="revealAll">Tüm cevapları göster</button>
-      <button class="btn alt" id="csvBtn">Sonuçları indir (CSV)</button>
-      <button class="btn alt" id="resetBtn">Oyları sıfırla</button>
-    </div>
-    <div class="grid" id="grid"></div>
+      <div class="sctrl">
+        <button class="btn alt" id="prevBtn">← Önceki</button>
+        <button class="btn" id="sReveal">Doğru cevabı göster</button>
+        <button class="btn alt" id="nextBtn">Sonraki →</button>
+      </div>
+      <div class="dots" id="dots"></div>
+      <p class="keys">Klavye: <b>←</b> <b>→</b> soru değiştir · <b>Boşluk</b> cevabı aç/kapa</p>
+    </section>
+    <!-- Hepsi alt alta görünümü -->
+    <section id="listView" class="hidden"><div class="grid" id="grid"></div></section>
   </main>
 </div>
 
@@ -271,7 +341,64 @@ function render(){
   $("#sLast").textContent = lastT ? "son oy: " + new Date(lastT).toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "henüz oy yok";
   if(lastTotal >= 0 && total > lastTotal){ const b = $("#sVotes"); b.classList.remove("pulse"); void b.offsetWidth; b.classList.add("pulse"); }
   lastTotal = total;
+  renderSingle();
 }
+
+/* ---------- Tek tek sunum görünümü ---------- */
+let cur = Math.min(Math.max(+localStorage.getItem("panelSoru") || 0, 0), Q.length - 1);
+let mode = localStorage.getItem("panelGorunum") === "hepsi" ? "hepsi" : "tek";
+const ini = n => clean(n).split(" ").filter(Boolean).slice(0, 2).map(w => w[0].toLocaleUpperCase("tr")).join("");
+function setMode(m){
+  mode = m; localStorage.setItem("panelGorunum", m);
+  $("#single").classList.toggle("hidden", m !== "tek");
+  $("#listView").classList.toggle("hidden", m !== "hepsi");
+  $("#viewBtn").textContent = m === "tek" ? "Hepsini alt alta göster" : "Tek tek göster";
+}
+function go(i, dir){
+  const n = Math.min(Math.max(i, 0), Q.length - 1); if(n === cur && dir) return;
+  cur = n; localStorage.setItem("panelSoru", cur);
+  const c = $("#scard"); c.style.setProperty("--dx", (dir || 1) * 50 + "px");
+  c.classList.remove("slide"); void c.offsetWidth; c.classList.add("slide");
+  renderSingle();
+}
+function renderSingle(){
+  if(!$("#sOpts")) return;
+  const d = Q[cur], v = votes[cur] || {}, c = d.options.map(() => 0), on = shown.has(cur);
+  for(const x of Object.values(v)) if(Number.isInteger(x.k) && x.k >= 0 && x.k < c.length) c[x.k]++;
+  const n = c.reduce((a, b) => a + b, 0);
+  if($("#sOpts").dataset.q !== String(cur)){
+    $("#sOpts").dataset.q = cur;
+    $("#sNo").textContent = `SORU ${String(cur + 1).padStart(2, "0")} / ${Q.length}`;
+    $("#sIcon").src = `img/${d.icon}.png`; $("#sQ").textContent = d.q;
+    $("#sOpts").innerHTML = d.options.map((o, k) => `
+      <div class="srow ${k === d.answer ? "right" : ""}" style="--c:${C[k]}">
+        <div class="top"><span class="av">${d.images?.[k] ? `<img src="${d.images[k]}" alt="">` : esc(ini(o))}</span><span class="nm">${esc(clean(o))}</span><span class="ok">✓ DOĞRU</span><span class="n" id="sn${k}">0</span><span class="pct" id="sp${k}">%0</span></div>
+        <div class="bar"><i id="sb${k}"></i></div>
+      </div>`).join("");
+    $("#dots").innerHTML = Q.map((_, i) => `<button data-i="${i}" title="Soru ${i + 1}">${i + 1}</button>`).join("");
+  }
+  d.options.forEach((o, k) => { const p = n ? Math.round(c[k] / n * 100) : 0;
+    $("#sn" + k).textContent = c[k]; $("#sp" + k).textContent = "%" + p; $("#sb" + k).style.width = p + "%"; });
+  $("#sTot").textContent = `${n} oy`;
+  $("#scard").classList.toggle("shown", on);
+  $("#sFoot").innerHTML = !n ? "Henüz kimse cevaplamadı" : on ? `Bilenlerin oranı: <b>%${Math.round(c[d.answer] / n * 100)}</b>` : "Doğru cevap gizli";
+  const r = $("#sReveal"); r.textContent = on ? "Cevabı gizle" : "Doğru cevabı göster"; r.classList.toggle("on", on);
+  $("#prevBtn").disabled = cur === 0; $("#nextBtn").disabled = cur === Q.length - 1;
+  [...$("#dots").children].forEach((b, i) => { b.classList.toggle("now", i === cur); b.classList.toggle("done", shown.has(i)); });
+}
+$("#prevBtn").onclick = () => go(cur - 1, -1);
+$("#nextBtn").onclick = () => go(cur + 1, 1);
+$("#sReveal").onclick = () => toggle(cur);
+$("#dots").addEventListener("click", e => { const b = e.target.closest("button"); if(b) go(+b.dataset.i, +b.dataset.i < cur ? -1 : 1); });
+$("#viewBtn").onclick = () => setMode(mode === "tek" ? "hepsi" : "tek");
+document.querySelectorAll(".menu button").forEach(b => b.addEventListener("click", () => b.closest("details").open = false));
+addEventListener("keydown", e => {
+  if(mode !== "tek" || $("#vPanel").classList.contains("hidden") || !$("#zoom").classList.contains("hidden")) return;
+  if(e.key === "ArrowRight") go(cur + 1, 1);
+  else if(e.key === "ArrowLeft") go(cur - 1, -1);
+  else if(e.key === " " || e.key === "Enter"){ e.preventDefault(); toggle(cur); }
+});
+setMode(mode);
 
 /* ---------- CSV / sıfırla ---------- */
 $("#csvBtn").onclick = () => {
