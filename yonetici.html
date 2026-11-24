@@ -169,11 +169,11 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
   <div><h1>Telefonunla okut, <em>hocalarını</em> tahmin et!</h1><div class="qr" id="qrBig"></div><p id="joinUrl2"></p></div>
 </div>
 
-<script src="sorular.js?v=5"></script>
+<script src="sorular.js?v=6"></script>
 <script type="module">
 import { db, auth, googleLogin, onAuthStateChanged, ref, get, set, remove, onValue, signOut } from "./fb.js?v=5";
 const $ = s => document.querySelector(s);
-const Q = window.SORULAR, C = ["#e8414f", "#2f7fd6"];
+const Q = window.SORULAR, C = ["#e8414f", "#2f7fd6", "#f2a516", "#1f9d5c"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
 const clean = n => n.replace(/…/g, "").replace(/\s+/g, " ").trim();
 let votes = {}, stop = null, lastTotal = -1;
@@ -256,9 +256,9 @@ function render(){
   const people = new Set(); let total = 0, right = 0, shownTotal = 0;
   let lastT = 0;
   Q.forEach((d, i) => {
-    const v = votes[i] || {}, c = [0, 0];
-    for(const [uid, x] of Object.entries(v)){ if(x.k === 0 || x.k === 1){ c[x.k]++; people.add(uid); lastT = Math.max(lastT, x.t || 0); } }
-    const n = c[0] + c[1]; total += n;
+    const v = votes[i] || {}, c = d.options.map(() => 0);
+    for(const [uid, x] of Object.entries(v)){ if(Number.isInteger(x.k) && x.k >= 0 && x.k < c.length){ c[x.k]++; people.add(uid); lastT = Math.max(lastT, x.t || 0); } }
+    const n = c.reduce((a, b) => a + b, 0); total += n;
     if(shown.has(i)){ right += c[d.answer]; shownTotal += n; }
     $("#t" + i).textContent = n;
     d.options.forEach((o, k) => { const p = n ? Math.round(c[k] / n * 100) : 0;

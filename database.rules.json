@@ -6,7 +6,7 @@
       "$q": {
         "$uid": {
           ".write": "auth != null && auth.uid === $uid && !data.exists()",
-          ".validate": "$q.matches(/^[0-9]{1,2}$/) && newData.hasChildren(['k','t']) && newData.child('k').isNumber() && (newData.child('k').val() === 0 || newData.child('k').val() === 1) && newData.child('t').val() === now"
+          ".validate": "$q.matches(/^[0-9]{1,2}$/) && newData.hasChildren(['k','t']) && newData.child('k').isNumber() && newData.child('k').val() >= 0 && newData.child('k').val() <= 3 && newData.child('t').val() === now"
         }
       }
     },
