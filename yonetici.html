@@ -59,8 +59,8 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
 .stat b.pulse{animation:pop .45s var(--spring)}
 .stat span{color:var(--ink2);font-weight:700;font-size:14px}
 .qrbox{padding:16px;display:flex;gap:14px;align-items:center;grid-row:span 1}
-.qrbox .qr{width:120px;height:120px;flex:none;background:#fff;border-radius:14px;padding:8px;box-shadow:inset 0 0 0 2px #f1e3db;cursor:zoom-in}
-.qrbox .qr svg{width:100%;height:100%;display:block}
+.qrbox .qr{width:120px;height:120px;flex:none;background:#fff;border-radius:14px;padding:0;overflow:hidden;box-shadow:inset 0 0 0 2px #f1e3db;cursor:zoom-in}
+.qrbox .qr img,.zoom .qr img{width:100%;height:100%;display:block;object-fit:contain}
 .qrbox b{font-family:var(--serif);font-size:19px;display:block}
 .qrbox p{font-size:12.5px;color:var(--ink2);font-weight:700;word-break:break-all;margin:4px 0 8px}
 .qrbox .btn{padding:8px 14px;font-size:13px}
@@ -83,14 +83,23 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
 .opt .row .pct{color:var(--muted);font-weight:800;width:46px;text-align:right}
 .bar{height:14px;border-radius:999px;background:#f3e6df;overflow:hidden;margin-top:6px}
 .bar i{display:block;height:100%;width:0;border-radius:inherit;background:var(--c);transition:width .7s var(--spring)}
-.q .foot{margin-top:14px;font-size:13px;font-weight:800;color:var(--ink2)}
+.q .foot{margin-top:14px;font-size:13px;font-weight:800;color:var(--ink2);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.reveal{font-family:var(--sans);font-weight:900;font-size:13px;border:none;cursor:pointer;border-radius:999px;padding:8px 14px;color:#fff;background:var(--green);box-shadow:0 3px 0 #157246;transition:transform .15s}
+.reveal:active{transform:translateY(3px)}
+.q.shown .reveal{background:#fff;color:var(--ink2);box-shadow:inset 0 0 0 2px #efdcd2}
+/* doğru cevap gizliyken rozet görünmez; açılınca doğru seçenek yeşil parlar */
+.opt .row .ok{display:none}
+.q.shown .opt .row .ok{display:inline-block;animation:pop .45s var(--spring)}
+.q.shown .opt.right{background:#eaf7f0;border-radius:14px;padding:8px 10px;margin-left:-10px;margin-right:-10px;box-shadow:inset 0 0 0 2px var(--green)}
+.q.shown .opt.right .nm{color:var(--green)}
+.q.shown .opt:not(.right){opacity:.55}
+.q.pop{animation:pop .5s var(--spring)}
 .q .foot b{color:var(--green)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);font-weight:800;padding:40px}
 
 /* QR büyük */
 .zoom{position:fixed;inset:0;background:rgba(251,245,236,.97);z-index:50;display:grid;place-items:center;text-align:center;cursor:zoom-out;animation:up .3s ease}
-.zoom .qr{width:min(70vh,80vw);height:min(70vh,80vw);background:#fff;border-radius:28px;padding:22px;box-shadow:var(--sh-lg);margin:0 auto}
-.zoom .qr svg{width:100%;height:100%}
+.zoom .qr{width:min(70vh,80vw);height:min(70vh,80vw);background:#fff;border-radius:28px;padding:0;overflow:hidden;box-shadow:var(--sh-lg);margin:0 auto}
 .zoom h1{font-size:clamp(28px,4vw,52px);font-weight:800;margin-bottom:18px}
 .zoom h1 em{color:var(--red)}
 .zoom p{font-weight:800;color:var(--ink2);margin-top:16px;font-size:clamp(14px,1.6vw,20px)}
@@ -148,6 +157,7 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
     </div>
     <div class="toolbar">
       <h2>Sorular</h2>
+      <button class="btn" id="revealAll">Tüm cevapları göster</button>
       <button class="btn alt" id="csvBtn">Sonuçları indir (CSV)</button>
       <button class="btn alt" id="resetBtn">Oyları sıfırla</button>
     </div>
@@ -159,7 +169,6 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
   <div><h1>Telefonunla okut, <em>hocalarını</em> tahmin et!</h1><div class="qr" id="qrBig"></div><p id="joinUrl2"></p></div>
 </div>
 
-<script src="qrcode.js"></script>
 <script src="sorular.js"></script>
 <script type="module">
 import { db, auth, googleLogin, currentUser, ref, get, remove, onValue, signOut } from "./fb.js";
@@ -189,9 +198,10 @@ const out = async () => { await signOut(auth); view("vLogin"); };
 $("#logout").onclick = out; $("#logout2").onclick = out;
 
 /* ---------- QR ---------- */
-const siteUrl = location.href.replace(/yonetici\.html.*$/, "") + "?direkt";
-function qrSvg(){ const q = qrcode(0, "M"); q.addData(siteUrl); q.make(); return q.createSvgTag(8, 0); }
-$("#qrSmall").innerHTML = $("#qrBig").innerHTML = qrSvg();
+const siteUrl = location.href.replace(/yonetici\.html.*$/, "");
+// Kalpli QR (scan.page üzerinden siteye yönlendirir)
+const QR_IMG = `<img src="img/qr-kalp.png" alt="Katılım QR kodu">`;
+$("#qrSmall").innerHTML = $("#qrBig").innerHTML = QR_IMG;
 $("#joinUrl").textContent = $("#joinUrl2").textContent = siteUrl.replace(/^https?:\/\//, "");
 $("#zoomBtn").onclick = $("#qrSmall").onclick = () => { $("#zoom").classList.remove("hidden"); document.documentElement.requestFullscreen?.().catch(() => {}); };
 $("#zoom").onclick = () => { $("#zoom").classList.add("hidden"); if(document.fullscreenElement) document.exitFullscreen(); };
@@ -202,31 +212,52 @@ function start(){
   stop = onValue(ref(db, "votes"), s => { votes = s.val() || {}; render(); }, e => { $("#grid").innerHTML = `<div class="empty">Oylar okunamadı: ${esc(e.message)}</div>`; });
 }
 // Kartlar bir kez çizilir, sonra yalnızca sayılar güncellenir (titreme olmasın)
+// Doğru cevaplar gizli başlar; yönetici butona basınca açılır (bu cihazda hatırlanır)
+const shown = new Set(JSON.parse(localStorage.getItem("acikCevaplar") || "[]"));
+const saveShown = () => localStorage.setItem("acikCevaplar", JSON.stringify([...shown]));
 function build(){
-  $("#grid").innerHTML = Q.map((d, i) => `<div class="card q" style="animation-delay:${i * .04}s">
+  $("#grid").innerHTML = Q.map((d, i) => `<div class="card q" id="q${i}" style="animation-delay:${i * .04}s">
       <div class="head"><img src="img/${d.icon}.png" alt=""><div><small>SORU ${String(i + 1).padStart(2, "0")}</small><h3>${esc(d.q)}</h3></div>
         <div class="total"><b id="t${i}">0</b><small>oy</small></div></div>
       ${d.options.map((o, k) => `
-        <div class="opt" style="--c:${C[k]}"><div class="row"><span class="nm">${esc(clean(o))}</span>${k === d.answer ? `<span class="ok">DOĞRU</span>` : ""}<span class="n" id="n${i}_${k}">0</span><span class="pct" id="p${i}_${k}">%0</span></div>
+        <div class="opt ${k === d.answer ? "right" : ""}" style="--c:${C[k]}"><div class="row"><span class="nm">${esc(clean(o))}</span>${k === d.answer ? `<span class="ok">✓ DOĞRU</span>` : ""}<span class="n" id="n${i}_${k}">0</span><span class="pct" id="p${i}_${k}">%0</span></div>
         <div class="bar"><i id="b${i}_${k}"></i></div></div>`).join("")}
-      <div class="foot" id="f${i}">Henüz kimse cevaplamadı</div>
+      <div class="foot"><span id="f${i}"></span><button class="reveal" data-i="${i}"></button></div>
     </div>`).join("");
+  $("#grid").addEventListener("click", e => { const b = e.target.closest(".reveal"); if(!b) return; toggle(+b.dataset.i); });
+  applyShown();
 }
+function applyShown(){
+  Q.forEach((d, i) => {
+    const on = shown.has(i), card = $("#q" + i);
+    card.classList.toggle("shown", on);
+    card.querySelector(".reveal").textContent = on ? "Cevabı gizle" : "Doğru cevabı göster";
+  });
+  $("#revealAll").textContent = shown.size === Q.length ? "Tüm cevapları gizle" : "Tüm cevapları göster";
+}
+function toggle(i){
+  if(shown.has(i)) shown.delete(i);
+  else{ shown.add(i); const c = $("#q" + i); c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
+  saveShown(); applyShown(); render();
+}
+$("#revealAll").onclick = () => { if(shown.size === Q.length) shown.clear(); else Q.forEach((_, i) => shown.add(i)); saveShown(); applyShown(); render(); };
 function render(){
   if(!$("#t0")) build();
-  const people = new Set(); let total = 0, right = 0, lastT = 0;
+  const people = new Set(); let total = 0, right = 0, shownTotal = 0;
+  let lastT = 0;
   Q.forEach((d, i) => {
     const v = votes[i] || {}, c = [0, 0];
     for(const [uid, x] of Object.entries(v)){ if(x.k === 0 || x.k === 1){ c[x.k]++; people.add(uid); lastT = Math.max(lastT, x.t || 0); } }
-    const n = c[0] + c[1]; total += n; right += c[d.answer];
+    const n = c[0] + c[1]; total += n;
+    if(shown.has(i)){ right += c[d.answer]; shownTotal += n; }
     $("#t" + i).textContent = n;
     d.options.forEach((o, k) => { const p = n ? Math.round(c[k] / n * 100) : 0;
       $(`#n${i}_${k}`).textContent = c[k]; $(`#p${i}_${k}`).textContent = "%" + p; $(`#b${i}_${k}`).style.width = p + "%"; });
-    $("#f" + i).innerHTML = n ? `Bilenlerin oranı: <b>%${Math.round(c[d.answer] / n * 100)}</b>` : "Henüz kimse cevaplamadı";
+    $("#f" + i).innerHTML = !n ? "Henüz kimse cevaplamadı" : shown.has(i) ? `Bilenlerin oranı: <b>%${Math.round(c[d.answer] / n * 100)}</b>` : "Doğru cevap gizli";
   });
   $("#sPeople").textContent = people.size;
   $("#sVotes").textContent = total;
-  $("#sRate").textContent = total ? "%" + Math.round(right / total * 100) : "–";
+  $("#sRate").textContent = !shown.size ? "Gizli" : shownTotal ? "%" + Math.round(right / shownTotal * 100) : "–";
   $("#sLast").textContent = lastT ? "son oy: " + new Date(lastT).toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "henüz oy yok";
   if(lastTotal >= 0 && total > lastTotal){ const b = $("#sVotes"); b.classList.remove("pulse"); void b.offsetWidth; b.classList.add("pulse"); }
   lastTotal = total;
