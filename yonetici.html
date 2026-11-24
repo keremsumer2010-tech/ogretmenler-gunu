@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Yönetici Paneli · 24 Kasım Öğretmenler Günü</title>
+<link rel="icon" href="img/apple.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e30a17;--ink:#2b1d1a;--ink2:#5b4540;--muted:#9a827c;--green:#1f9d5c;--a:#e8414f;--b:#2f7fd6;
+  --serif:'Fraunces',Georgia,serif;--sans:'Nunito',system-ui,sans-serif;--hand:'Caveat',cursive;
+  --sh-lg:0 40px 80px -40px rgba(90,30,20,.45),0 18px 36px -18px rgba(90,30,20,.22);--sh-sm:0 10px 24px -14px rgba(90,30,20,.4);--spring:cubic-bezier(.34,1.56,.64,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1100px 650px at 10% 0%,rgba(255,214,196,.6),transparent 60%),radial-gradient(900px 650px at 100% 100%,rgba(255,205,220,.5),transparent 60%),linear-gradient(180deg,#fdf8f1,#f9efe4) fixed}
+.ribbon{height:10px;background:repeating-linear-gradient(90deg,var(--red) 0 60px,#fff 60px 120px);box-shadow:0 4px 10px -4px rgba(150,10,10,.4)}
+.hidden{display:none!important}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.05}
+.card{background:#fffdf9;border-radius:24px;box-shadow:var(--sh-lg);border:1px solid rgba(255,255,255,.9)}
+.btn{font-family:var(--sans);font-weight:900;font-size:16px;border:none;cursor:pointer;color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 24px;border-radius:999px;text-decoration:none;
+  background:linear-gradient(180deg,#ff3b47,#e30a17 55%,#c8070f);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 5px 0 #9c050c,0 14px 24px -12px rgba(200,7,15,.6);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)} .btn:active{transform:translateY(4px)}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #efdcd2,0 4px 0 #efdcd2}
+.btn.ghost{background:none;color:var(--muted);box-shadow:none;padding:10px 12px}
+.btn img{width:22px;height:22px}
+.eyebrow{font-weight:900;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+@keyframes up{from{transform:translateY(16px);opacity:0}} @keyframes pop{from{transform:scale(.5);opacity:0}} @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{50%{opacity:.25}}
+.spinner{width:40px;height:40px;border-radius:50%;border:4px solid #f1dcd3;border-top-color:var(--red);animation:spin .9s linear infinite;margin:0 auto}
+
+/* Giriş */
+.center{min-height:calc(100vh - 10px);display:grid;place-items:center;padding:24px}
+.login{width:min(440px,100%);padding:36px 32px;text-align:center;animation:up .5s ease}
+.login img.logo{width:92px;animation:pop .7s var(--spring);display:block;margin:0 auto 8px}
+.login h1{font-size:34px;font-weight:800;margin:10px 0 6px}
+.login p{color:var(--ink2);font-weight:700;line-height:1.45}
+.login .btn{width:100%;margin-top:22px}
+.g{width:20px;height:20px;background:#fff;border-radius:50%;padding:2px}
+.err{color:var(--red);font-weight:800;margin-top:14px;min-height:20px}
+.uid{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:#f7ede7;border-radius:10px;padding:8px 10px;margin-top:10px;word-break:break-all;user-select:all}
+
+/* Panel */
+.top{display:flex;align-items:center;gap:14px;padding:16px 28px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:40px;height:40px}
+.brand b{font-family:var(--serif);font-size:22px;font-weight:800;display:block;line-height:1}
+.top .sp{flex:1}
+.live{display:inline-flex;align-items:center;gap:8px;font-weight:900;font-size:13px;color:var(--green);background:#e7f7ee;border-radius:999px;padding:6px 12px}
+.live i{width:9px;height:9px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite}
+.who{font-weight:800;color:var(--ink2);font-size:14px}
+main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr) minmax(260px,320px);gap:18px;margin-bottom:22px}
+.stat{padding:20px 22px;display:flex;flex-direction:column;justify-content:center;animation:up .5s both}
+.stat small{font-weight:900;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-family:var(--serif);font-weight:800;font-size:52px;line-height:1.05;margin-top:4px}
+.stat b.pulse{animation:pop .45s var(--spring)}
+.stat span{color:var(--ink2);font-weight:700;font-size:14px}
+.qrbox{padding:16px;display:flex;gap:14px;align-items:center;grid-row:span 1}
+.qrbox .qr{width:120px;height:120px;flex:none;background:#fff;border-radius:14px;padding:8px;box-shadow:inset 0 0 0 2px #f1e3db;cursor:zoom-in}
+.qrbox .qr svg{width:100%;height:100%;display:block}
+.qrbox b{font-family:var(--serif);font-size:19px;display:block}
+.qrbox p{font-size:12.5px;color:var(--ink2);font-weight:700;word-break:break-all;margin:4px 0 8px}
+.qrbox .btn{padding:8px 14px;font-size:13px}
+.toolbar{display:flex;align-items:center;gap:12px;margin:4px 0 16px;flex-wrap:wrap}
+.toolbar h2{font-size:28px;font-weight:800;margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:18px}
+.q{padding:20px 22px 22px;animation:up .5s both}
+.q .head{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.q .head img{width:52px;height:52px;flex:none;filter:drop-shadow(0 8px 6px rgba(90,40,20,.2))}
+.q .head small{font-weight:900;font-size:11.5px;letter-spacing:.14em;color:var(--red)}
+.q .head h3{font-size:20px;font-weight:700}
+.q .total{margin-left:auto;text-align:right;flex:none}
+.q .total b{font-family:var(--serif);font-size:30px;font-weight:800;display:block;line-height:1}
+.q .total small{color:var(--muted);letter-spacing:0;font-weight:800}
+.opt{margin-top:12px}
+.opt .row{display:flex;align-items:baseline;gap:10px;font-weight:800;font-size:16px}
+.opt .row .nm{flex:1}
+.opt .row .ok{font-size:11px;font-weight:900;color:#fff;background:var(--green);border-radius:999px;padding:2px 8px;letter-spacing:.06em}
+.opt .row .n{font-family:var(--serif);font-weight:800;font-size:22px}
+.opt .row .pct{color:var(--muted);font-weight:800;width:46px;text-align:right}
+.bar{height:14px;border-radius:999px;background:#f3e6df;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;width:0;border-radius:inherit;background:var(--c);transition:width .7s var(--spring)}
+.q .foot{margin-top:14px;font-size:13px;font-weight:800;color:var(--ink2)}
+.q .foot b{color:var(--green)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);font-weight:800;padding:40px}
+
+/* QR büyük */
+.zoom{position:fixed;inset:0;background:rgba(251,245,236,.97);z-index:50;display:grid;place-items:center;text-align:center;cursor:zoom-out;animation:up .3s ease}
+.zoom .qr{width:min(70vh,80vw);height:min(70vh,80vw);background:#fff;border-radius:28px;padding:22px;box-shadow:var(--sh-lg);margin:0 auto}
+.zoom .qr svg{width:100%;height:100%}
+.zoom h1{font-size:clamp(28px,4vw,52px);font-weight:800;margin-bottom:18px}
+.zoom h1 em{color:var(--red)}
+.zoom p{font-weight:800;color:var(--ink2);margin-top:16px;font-size:clamp(14px,1.6vw,20px)}
+@media (max-width:1000px){ .stats{grid-template-columns:1fr 1fr} .grid{grid-template-columns:1fr} }
+@media (max-width:560px){ .stats{grid-template-columns:1fr} main,.top{padding-left:14px;padding-right:14px} }
+</style>
+</head>
+<body>
+<div class="ribbon"></div>
+
+<!-- Yükleniyor -->
+<div class="center" id="vLoading"><div class="spinner"></div></div>
+
+<!-- Giriş -->
+<div class="center hidden" id="vLogin">
+  <div class="card login">
+    <img class="logo" src="img/clipboard.png" alt="">
+    <span class="eyebrow">24 Kasım Öğretmenler Günü</span>
+    <h1>Yönetici Girişi</h1>
+    <p>Her soruda hangi hocaya kaç kişinin oy verdiğini canlı görmek için giriş yap.</p>
+    <button class="btn" id="loginBtn"><svg class="g" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.8-6A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.7l7.9-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.2-13.5-9.9l-7.9 6C6.6 42.6 14.6 48 24 48z"/></svg>Google ile giriş yap</button>
+    <div class="err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- Yetki yok -->
+<div class="center hidden" id="vDenied">
+  <div class="card login">
+    <img class="logo" src="img/monkey.png" alt="">
+    <h1>Yetkin yok</h1>
+    <p>Bu hesap henüz yönetici değil. Site sahibinden aşağıdaki kimliği yönetici listesine eklemesini iste.</p>
+    <div class="uid" id="myUid"></div>
+    <button class="btn alt" id="logout2" style="margin-top:18px">Farklı hesapla giriş yap</button>
+  </div>
+</div>
+
+<!-- Panel -->
+<div class="hidden" id="vPanel">
+  <header class="top">
+    <div class="brand"><img src="img/clipboard.png" alt=""><div><span class="eyebrow">24 Kasım Öğretmenler Günü</span><b>Yönetici Paneli</b></div></div>
+    <div class="sp"></div>
+    <span class="live"><i></i> Canlı</span>
+    <span class="who" id="who"></span>
+    <button class="btn ghost" id="logout">Çıkış</button>
+  </header>
+  <main>
+    <div class="stats">
+      <div class="card stat"><small>Katılan kişi</small><b id="sPeople">0</b><span>en az bir soruyu cevaplayan</span></div>
+      <div class="card stat" style="animation-delay:.05s"><small>Toplam oy</small><b id="sVotes">0</b><span id="sLast">henüz oy yok</span></div>
+      <div class="card stat" style="animation-delay:.1s"><small>Doğru oranı</small><b id="sRate">–</b><span>tüm cevaplarda</span></div>
+      <div class="card qrbox" style="animation-delay:.15s">
+        <div class="qr" id="qrSmall" title="Büyütmek için tıkla"></div>
+        <div><b>Katılım QR'ı</b><p id="joinUrl"></p><button class="btn alt" id="zoomBtn">Tahtada göster</button></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <h2>Sorular</h2>
+      <button class="btn alt" id="csvBtn">Sonuçları indir (CSV)</button>
+      <button class="btn alt" id="resetBtn">Oyları sıfırla</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<div class="zoom hidden" id="zoom">
+  <div><h1>Telefonunla okut, <em>hocalarını</em> tahmin et!</h1><div class="qr" id="qrBig"></div><p id="joinUrl2"></p></div>
+</div>
+
+<script src="qrcode.js"></script>
+<script src="sorular.js"></script>
+<script type="module">
+import { db, auth, googleLogin, currentUser, ref, get, remove, onValue, signOut } from "./fb.js";
+const $ = s => document.querySelector(s);
+const Q = window.SORULAR, C = ["#e8414f", "#2f7fd6"];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const clean = n => n.replace(/…/g, "").replace(/\s+/g, " ").trim();
+let votes = {}, stop = null, lastTotal = -1;
+
+function view(id){ ["vLoading","vLogin","vDenied","vPanel"].forEach(v => $("#" + v).classList.toggle("hidden", v !== id)); }
+
+async function route(u){
+  if(stop){ stop(); stop = null; }
+  if(!u || u.isAnonymous){ view("vLogin"); return; }
+  const isAdmin = await get(ref(db, `admins/${u.uid}`)).then(s => s.exists()).catch(() => false);
+  if(!isAdmin){ $("#myUid").textContent = u.uid; view("vDenied"); return; }
+  $("#who").textContent = u.email || "";
+  view("vPanel"); start();
+}
+
+$("#loginBtn").onclick = async () => {
+  $("#loginErr").textContent = "";
+  try{ await route(await googleLogin()); }
+  catch(e){ $("#loginErr").textContent = e.code === "auth/popup-closed-by-user" ? "Giriş penceresi kapatıldı." : "Giriş yapılamadı: " + (e.code || e.message); }
+};
+const out = async () => { await signOut(auth); view("vLogin"); };
+$("#logout").onclick = out; $("#logout2").onclick = out;
+
+/* ---------- QR ---------- */
+const siteUrl = location.href.replace(/yonetici\.html.*$/, "") + "?direkt";
+function qrSvg(){ const q = qrcode(0, "M"); q.addData(siteUrl); q.make(); return q.createSvgTag(8, 0); }
+$("#qrSmall").innerHTML = $("#qrBig").innerHTML = qrSvg();
+$("#joinUrl").textContent = $("#joinUrl2").textContent = siteUrl.replace(/^https?:\/\//, "");
+$("#zoomBtn").onclick = $("#qrSmall").onclick = () => { $("#zoom").classList.remove("hidden"); document.documentElement.requestFullscreen?.().catch(() => {}); };
+$("#zoom").onclick = () => { $("#zoom").classList.add("hidden"); if(document.fullscreenElement) document.exitFullscreen(); };
+addEventListener("keydown", e => { if(e.key === "Escape") $("#zoom").classList.add("hidden"); });
+
+/* ---------- Canlı oylar ---------- */
+function start(){
+  stop = onValue(ref(db, "votes"), s => { votes = s.val() || {}; render(); }, e => { $("#grid").innerHTML = `<div class="empty">Oylar okunamadı: ${esc(e.message)}</div>`; });
+}
+// Kartlar bir kez çizilir, sonra yalnızca sayılar güncellenir (titreme olmasın)
+function build(){
+  $("#grid").innerHTML = Q.map((d, i) => `<div class="card q" style="animation-delay:${i * .04}s">
+      <div class="head"><img src="img/${d.icon}.png" alt=""><div><small>SORU ${String(i + 1).padStart(2, "0")}</small><h3>${esc(d.q)}</h3></div>
+        <div class="total"><b id="t${i}">0</b><small>oy</small></div></div>
+      ${d.options.map((o, k) => `
+        <div class="opt" style="--c:${C[k]}"><div class="row"><span class="nm">${esc(clean(o))}</span>${k === d.answer ? `<span class="ok">DOĞRU</span>` : ""}<span class="n" id="n${i}_${k}">0</span><span class="pct" id="p${i}_${k}">%0</span></div>
+        <div class="bar"><i id="b${i}_${k}"></i></div></div>`).join("")}
+      <div class="foot" id="f${i}">Henüz kimse cevaplamadı</div>
+    </div>`).join("");
+}
+function render(){
+  if(!$("#t0")) build();
+  const people = new Set(); let total = 0, right = 0, lastT = 0;
+  Q.forEach((d, i) => {
+    const v = votes[i] || {}, c = [0, 0];
+    for(const [uid, x] of Object.entries(v)){ if(x.k === 0 || x.k === 1){ c[x.k]++; people.add(uid); lastT = Math.max(lastT, x.t || 0); } }
+    const n = c[0] + c[1]; total += n; right += c[d.answer];
+    $("#t" + i).textContent = n;
+    d.options.forEach((o, k) => { const p = n ? Math.round(c[k] / n * 100) : 0;
+      $(`#n${i}_${k}`).textContent = c[k]; $(`#p${i}_${k}`).textContent = "%" + p; $(`#b${i}_${k}`).style.width = p + "%"; });
+    $("#f" + i).innerHTML = n ? `Bilenlerin oranı: <b>%${Math.round(c[d.answer] / n * 100)}</b>` : "Henüz kimse cevaplamadı";
+  });
+  $("#sPeople").textContent = people.size;
+  $("#sVotes").textContent = total;
+  $("#sRate").textContent = total ? "%" + Math.round(right / total * 100) : "–";
+  $("#sLast").textContent = lastT ? "son oy: " + new Date(lastT).toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "henüz oy yok";
+  if(lastTotal >= 0 && total > lastTotal){ const b = $("#sVotes"); b.classList.remove("pulse"); void b.offsetWidth; b.classList.add("pulse"); }
+  lastTotal = total;
+}
+
+/* ---------- CSV / sıfırla ---------- */
+$("#csvBtn").onclick = () => {
+  const rows = [["Soru", "Seçenek", "Oy", "Yüzde", "Doğru cevap mı"]];
+  Q.forEach((d, i) => { const v = Object.values(votes[i] || {}), n = v.length;
+    d.options.forEach((o, k) => { const c = v.filter(x => x.k === k).length; rows.push([d.q, clean(o), c, n ? Math.round(c / n * 100) + "%" : "0%", k === d.answer ? "Evet" : "Hayır"]); }); });
+  const csv = "﻿" + rows.map(r => r.map(x => `"${String(x).replace(/"/g, '""')}"`).join(";")).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  a.download = "ogretmenler-gunu-sonuclar.csv"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+};
+$("#resetBtn").onclick = async () => {
+  if(!confirm("Tüm oylar kalıcı olarak silinecek. Bu geri alınamaz. Emin misin?")) return;
+  try{ await remove(ref(db, "votes")); }catch(e){ alert("Silinemedi: " + e.message); }
+};
+
+currentUser().then(route);
+</script>
+</body>
+</html>

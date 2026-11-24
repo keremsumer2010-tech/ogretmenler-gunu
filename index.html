@@ -285,6 +285,7 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
 /* ===== Teşekkür kartı ===== */
 .link{background:none;border:none;cursor:pointer;font-family:var(--sans);font-weight:800;font-size:15px;color:var(--red);margin-top:14px;display:inline-flex;align-items:center;gap:8px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
 .link img{width:24px;height:24px}
+.links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
 .btn.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #efdcd2,0 5px 0 #efdcd2,var(--sh-sm)}
 .btn.alt::after{display:none}
 .final .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
@@ -333,7 +334,7 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   .quote{text-align:left;font-size:18px}
   .tape{width:74px;height:24px;top:-11px}
   .stage{max-width:580px}
-  .sticker,.hint{display:none}
+  .sticker,.hint .kb{display:none}
   .layout{padding-bottom:120px}
   html,body{height:auto}
   body{position:relative;min-height:100vh}
@@ -346,7 +347,7 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   .sheet{grid-template-columns:1fr;padding:22px 18px;gap:18px}
   .modal{padding:10px;align-items:flex-start}
 }
-@media (max-height:860px) and (min-width:841px){ .hint{display:none} h1{font-size:clamp(40px,5vw,64px);margin:16px 0 12px} .fact{margin-top:14px} .btn{margin-top:22px} }
+@media (max-height:860px) and (min-width:841px){ .hint .kb{display:none} h1{font-size:clamp(40px,5vw,64px);margin:16px 0 12px} .fact{margin-top:14px} .btn{margin-top:22px} }
 @media (max-width:430px){
   .face{padding:20px 16px}
   .options{gap:10px}
@@ -391,8 +392,8 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
         <p class="lead">Bize okumayı, düşünmeyi ve hayal etmeyi öğreten öğretmenlerimizi aslında ne kadar tanıyoruz? Her kartta iki hoca var, doğru olanı seç.</p>
         <div class="fact"><img src="img/bulb.png" alt=""><span><b>Biliyor muydun?</b> Atatürk, 24 Kasım 1928'de “Başöğretmen” unvanını kabul etti. Öğretmenler Günü'nü bu yüzden 24 Kasım'da kutluyoruz.</span></div>
         <button class="btn" id="startBtn">Başlayalım <img src="img/sparkles.png" alt=""></button>
-        <div><button class="link" id="introCard"><img src="img/letter.png" alt="">ya da doğrudan hocana teşekkür kartı yaz</button></div>
-        <div class="hint">Klavyeyle de oynayabilirsin: <kbd>1</kbd> <kbd>2</kbd> veya <kbd>←</kbd> <kbd>→</kbd></div>
+        <div class="links"><button class="link" id="introCard"><img src="img/letter.png" alt="">Teşekkür kartı yaz</button></div>
+        <div class="hint">Cevapların isimsiz olarak sayılır.<span class="kb"> · Klavye: <kbd>1</kbd> <kbd>2</kbd> veya <kbd>←</kbd> <kbd>→</kbd></span></div>
       </div>
     </section>
 
@@ -491,23 +492,11 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
 <button class="sound fs" id="fsBtn" aria-label="Tam ekran"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 <button class="sound" id="soundBtn" aria-label="Ses aç / kapa"><img id="soundImg" src="img/speaker.png" alt=""></button>
 
+<script src="sorular.js"></script>
+<script type="module" src="oy.js"></script>
 <script>
-/* =========================================================
-   SORULAR — answer: 0 = ilk isim, 1 = ikinci isim
-   ⚠ Cevaplar şimdilik tahmini, gerçekleriyle değiştir.
-   icon: img/ klasöründeki dosya adı
-   ========================================================= */
-const QUESTIONS = [
-  { q:"Hangisi aynı zamanda inşaat mühendisi?",      icon:"construction", options:["Saip …","Özlem Yılmaz"],               answer:1 },
-  { q:"Hangisi kayınvalide?",                        icon:"oldwoman",     options:["Buğu …","Nurhan …"],                    answer:1 },
-  { q:"Hangisi aynı zamanda hemşire?",               icon:"stethoscope",  options:["Çilem …","Meryem Tufanoğlu"],           answer:0 },
-  { q:"Hangisi Uzakdoğulu?",                         icon:"lantern",      options:["Mutlu Demirbaş","Pınar Karataş"],        answer:1 },
-  { q:"Hangisi sınıf öğretmenliği yaptı?",           icon:"abacus",       options:["Fahrettin Kavilcioğlu","Yakup Kayalı"],  answer:0 },
-  { q:"Hangisi radyo programcısıdır?",               icon:"radio",        options:["Seval Akbaba","Halil Yıldırım"],         answer:0 },
-  { q:"Hangisinin tıp okuyan çocuğu yok?",           icon:"xray",         options:["Yasemin Ertaş","Aysu Gündüz"],           answer:1 },
-  { q:"Hangisi yaratıcı drama eğitimi almıştır?",    icon:"drama",        options:["Mustafa Aydın","Dilek Manav"],           answer:1 },
-  { q:"Hangisi fen bilgisi öğretmenliği okumuştur?", icon:"microscope",   options:["Meltem Çimen Savaş","Yankı Kurt"],       answer:0 },
-];
+/* Sorular ve cevaplar sorular.js dosyasında (canlı yarışma da aynı dosyayı kullanır) */
+const QUESTIONS = window.SORULAR;
 
 const AV=[["#ff8a80","#e8414f"],["#ffb86b","#f07b22"],["#ffd36b","#e3a30c"],["#6fd3a6","#1f9d5c"],["#7cc4f5","#2f7fd6"],["#b79cf6","#7a52e0"],["#f79ac0","#de4d8c"],["#64d8cb","#169c8d"]];
 const OK_LINES=["Süpersin!","Hocalarını iyi tanıyorsun!","Tam isabet!","Bravo, aynen öyle!","Kalpten bildin!"];
@@ -566,7 +555,7 @@ function choose(k){
   const d=QUESTIONS[idx], ok=k===d.answer, opts=card.querySelectorAll(".opt");
   opts.forEach(o=>o.disabled=true);
   opts[k].classList.add("picked",ok?"correct":"wrong");
-  results.push({ok,k});
+  results.push({ok,k}); window.kaydetOy?.(idx,k);
   const r=opts[k].getBoundingClientRect();
   if(ok){
     score++; const s=$("#score"); s.textContent=score; s.classList.remove("pop"); void s.offsetWidth; s.classList.add("pop");
@@ -986,6 +975,8 @@ document.fonts.ready.then(()=>Promise.all(["700 96px Caveat","600 72px Caveat","
 function openCard(){ $("#modal").classList.add("open"); $("#saved").textContent=""; drawCard(); setTimeout(()=>$("#tMsg").focus({preventScroll:true}),300); }
 function closeCard(){ $("#modal").classList.remove("open"); }
 $("#introCard").onclick=openCard; $("#endCard").onclick=openCard; $("#closeModal").onclick=closeCard;
+if(location.hash==="#kart") setTimeout(openCard,400);
+if(new URLSearchParams(location.search).has("direkt")) setTimeout(startGame,300);
 $("#modal").addEventListener("click",e=>{ if(e.target.id==="modal") closeCard(); });
 const cardBlob=()=>new Promise(r=>$("#cardCanvas").toBlob(r,"image/png"));
 const cardFileName=()=>`tesekkur-karti-${slug($("#tTeacher").value)||"ogretmenlerim"}.png`;
