@@ -48,7 +48,7 @@ img{user-select:none;-webkit-user-drag:none}
 
 /* ===== Yerleşim ===== */
 .layout{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:1fr minmax(0,580px) 1fr;
-  align-items:center;gap:3vw;padding:118px 3vw 128px}
+  align-items:center;gap:3vw;padding:118px 3vw 44px}
 .side{display:flex;justify-content:center;align-items:center;min-width:0}
 
 /* ===== Polaroid ===== */
@@ -244,28 +244,6 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
 .fs svg{width:24px;height:24px;stroke:var(--ink2)}
 #fx{position:fixed;inset:0;z-index:60;pointer-events:none}
 
-/* ===== Okul bahçesi ===== */
-.yard{position:fixed;left:0;right:0;bottom:0;height:150px;z-index:2;pointer-events:none}
-.yard svg.hill{position:absolute;left:0;bottom:0;width:100%;height:100%}
-.yard .school{position:absolute;left:1.5%;bottom:58px;width:118px;filter:drop-shadow(0 10px 10px rgba(60,90,30,.25))}
-.yard .tree{position:absolute;right:1%;bottom:46px;width:132px;filter:drop-shadow(0 10px 10px rgba(60,90,30,.25))}
-.kid{position:absolute;bottom:34px;width:82px;translate:-50% 0;animation:kidIdle 3.2s ease-in-out infinite;animation-delay:var(--d)}
-.kid img{width:100%;display:block;transform-origin:50% 100%;filter:drop-shadow(0 8px 8px rgba(60,40,20,.2))}
-@keyframes kidIdle{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2deg)}}
-.yard.cheer .kid img{animation:kidJump .7s var(--spring) both;animation-delay:var(--j)}
-@keyframes kidJump{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-34px) scale(1.06) rotate(-6deg)}70%{transform:translateY(0) scale(1.04,.94)}100%{transform:none}}
-.yard.sad .kid img{animation:kidSad 1.1s ease both;animation-delay:var(--j)}
-@keyframes kidSad{0%{transform:none}30%,70%{transform:translateY(16px) rotate(-8deg) scale(.96)}100%{transform:none}}
-.yard.party .kid img{animation:kidParty .55s ease-in-out infinite alternate;animation-delay:var(--j)}
-@keyframes kidParty{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-26px) rotate(5deg)}}
-.yard .front{position:absolute;inset:0}
-.flower{position:absolute;bottom:8px;width:34px;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite;animation-delay:var(--d)}
-@keyframes sway{0%,100%{rotate:-6deg}50%{rotate:6deg}}
-.pop-heart{position:fixed;width:30px;z-index:5;pointer-events:none;animation:rise 1.4s ease-out forwards}
-@keyframes rise{from{transform:translateY(0) scale(.4);opacity:0}20%{opacity:1;transform:translateY(-20px) scale(1)}to{transform:translateY(-110px) scale(.9) rotate(12deg);opacity:0}}
-.bouquet{position:absolute;left:50%;bottom:18px;width:84px;translate:-50% 0;transform:scale(0);transform-origin:50% 100%;transition:transform .8s var(--spring);filter:drop-shadow(0 10px 10px rgba(60,40,20,.25))}
-.yard.gift .bouquet{transform:scale(1)}
-
 /* ===== Seçeneklerin sırayla gelişi ===== */
 .card.top.deal .icon{animation:dealPop .6s .05s var(--spring) both}
 .card.top.deal .qlabel,.card.top.deal .qtext{animation:dealUp .55s .18s ease both}
@@ -335,14 +313,9 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   .tape{width:74px;height:24px;top:-11px}
   .stage{max-width:580px}
   .sticker,.hint .kb{display:none}
-  .layout{padding-bottom:120px}
+  .layout{padding-bottom:84px}
   html,body{height:auto}
   body{position:relative;min-height:100vh}
-  .yard{height:96px;position:absolute}
-  .kid{width:54px;bottom:22px}
-  .yard .school{width:70px;bottom:36px} .yard .tree{width:80px;bottom:30px}
-  .flower{width:24px}
-  .bouquet{width:60px}
   .sound{bottom:12px;right:12px} .fs{right:72px;bottom:12px}
   .sheet{grid-template-columns:1fr;padding:22px 18px;gap:18px}
   .modal{padding:10px;align-items:flex-start}
@@ -445,20 +418,6 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   </aside>
 </div>
 
-<!-- Okul bahçesi -->
-<div class="yard" id="yard" aria-hidden="true">
-  <svg class="hill" viewBox="0 0 1440 150" preserveAspectRatio="none"><defs><linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9e6a0"/><stop offset="1" stop-color="#a9d47c"/></linearGradient></defs>
-    <path d="M0 78 C 220 40, 470 46, 720 66 S 1210 38, 1440 60 V150 H0Z" fill="url(#hb)"/></svg>
-  <img class="school" src="img/school.png" alt="">
-  <img class="tree" src="img/tree.png" alt="">
-  <div id="kids"></div>
-  <img class="bouquet" src="img/bouquet.png" alt="">
-  <svg class="hill front" viewBox="0 0 1440 150" preserveAspectRatio="none"><defs><linearGradient id="hf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93cb5f"/><stop offset="1" stop-color="#5f9c3c"/></linearGradient></defs>
-    <path d="M0 112 C 280 84, 560 96, 860 106 S 1290 82, 1440 100 V150 H0Z" fill="url(#hf)"/>
-    <path d="M0 112 C 280 84, 560 96, 860 106 S 1290 82, 1440 100" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/></svg>
-  <div id="flowers"></div>
-</div>
-
 <!-- Teşekkür kartı -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="cardTitle">
   <div class="sheet">
@@ -542,7 +501,7 @@ function layoutDeck(){
 }
 const topCard=()=>$(`.card[data-i="${idx}"]`);
 function startGame(){
-  idx=0; score=0; results=[]; clearTimeout(advTimer); yardReact(null);
+  idx=0; score=0; results=[]; clearTimeout(advTimer);
   $("#score").textContent=0; $("#qtotal").textContent=QUESTIONS.length;
   const deck=$("#deck"); deck.innerHTML="";
   QUESTIONS.forEach((_,i)=>deck.appendChild(makeCard(i)));
@@ -559,9 +518,9 @@ function choose(k){
   const r=opts[k].getBoundingClientRect();
   if(ok){
     score++; const s=$("#score"); s.textContent=score; s.classList.remove("pop"); void s.offsetWidth; s.classList.add("pop");
-    burst(r.left+r.width/2,r.top+r.height/2,90); ding(true); yardReact("cheer");
+    burst(r.left+r.width/2,r.top+r.height/2,90); ding(true);
   }else{
-    card.querySelector(".front").classList.add("shake"); ding(false); yardReact("sad");
+    card.querySelector(".front").classList.add("shake"); ding(false);
     setTimeout(()=>opts[d.answer].classList.add("correct"),220);
   }
   const back=card.querySelector(".back"), name=d.options[d.answer], last=idx===QUESTIONS.length-1;
@@ -634,7 +593,7 @@ function finish(){
   [...$("#stars").children].forEach((s,i)=>{ s.classList.remove("on"); if(i<on) setTimeout(()=>{s.classList.add("on"); blip(8+i*3);},600+i*320); });
   $("#keyList").innerHTML=QUESTIONS.map((d,i)=>`<li><i style="color:${results[i]?.ok?"#1f9d5c":"#e30a17"}">${results[i]?.ok?"✓":"✕"}</i><span>${d.q}</span><b>${d.options[d.answer]}</b></li>`).join("");
   $("#keyList").parentNode.open=false;
-  rain(p>=.4?4800:2600); yardReact("party");
+  rain(p>=.4?4800:2600);
   if(p>=.55){ fireworks(7); setTimeout(()=>ding(true),300); }
 }
 
@@ -856,26 +815,6 @@ $("#startBtn").onclick=e=>{ const r=e.currentTarget.getBoundingClientRect(); bur
 $("#againBtn").onclick=startGame;
 
 /* =========================================================
-   OKUL BAHÇESİ — çocuklar oyuna tepki verir
-   ========================================================= */
-const KIDS=[["student",11],["girl",19],["boy",27],["child",73],["wstudent",81],["mstudent",89]];
-$("#kids").innerHTML=KIDS.map(([k,x],i)=>`<span class="kid" style="left:${x}%;--d:${(-i*.53).toFixed(2)}s;--j:${(i*.07).toFixed(2)}s"><img src="img/${k}.png" alt=""></span>`).join("");
-$("#flowers").innerHTML=[3,15,23,33,40,60,67,77,86,97].map((x,i)=>`<img class="flower" src="img/${["tulip","sunflower","blossom"][i%3]}.png" alt="" style="left:${x}%;--d:${(-i*.7).toFixed(1)}s">`).join("");
-let yardT=null;
-function yardReact(type){
-  const y=$("#yard"); clearTimeout(yardT);
-  y.classList.remove("cheer","sad","party"); void y.offsetWidth;
-  if(!type){ y.classList.remove("gift"); return; }
-  y.classList.add(type);
-  if(type==="cheer"||type==="party") document.querySelectorAll(".kid").forEach((k,i)=>setTimeout(()=>{
-    const r=k.getBoundingClientRect(), h=document.createElement("img");
-    h.src="img/heart.png"; h.className="pop-heart"; h.style.left=`${r.left+r.width/2-15}px`; h.style.top=`${r.top-6}px`;
-    document.body.appendChild(h); setTimeout(()=>h.remove(),1500);
-  },i*90));
-  if(type!=="party") yardT=setTimeout(()=>y.classList.remove(type),1700);
-}
-
-/* =========================================================
    DÖNEN ATATÜRK SÖZLERİ
    ========================================================= */
 const QUOTES=[
@@ -980,7 +919,7 @@ if(new URLSearchParams(location.search).has("direkt")) setTimeout(startGame,300)
 $("#modal").addEventListener("click",e=>{ if(e.target.id==="modal") closeCard(); });
 const cardBlob=()=>new Promise(r=>$("#cardCanvas").toBlob(r,"image/png"));
 const cardFileName=()=>`tesekkur-karti-${slug($("#tTeacher").value)||"ogretmenlerim"}.png`;
-function celebrateCard(){ $("#yard").classList.add("gift"); yardReact("cheer"); ding(true);
+function celebrateCard(){ ding(true);
   const r=$("#cardCanvas").getBoundingClientRect(); burst(r.left+r.width/2,r.top+r.height/2,100); }
 $("#dlCard").onclick=async()=>{
   const b=await cardBlob(), a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=cardFileName();

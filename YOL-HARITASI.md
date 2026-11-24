@@ -143,7 +143,7 @@ Aşağıdaki fikirler etkisine ve zorluğuna göre puanlandı.
 
 | # | Fikir | Etki | Zorluk | Karar |
 |---|---|---|---|---|
-| 1 | Okul bahçesi sahnesi + tepki veren çocuklar | ★★★★★ | ★★☆ | ✅ Yapıldı |
+| 1 | Okul bahçesi sahnesi + tepki veren çocuklar | ★★☆☆☆ | ★★☆ | ❌ Denendi, kaldırıldı |
 | 2 | Teşekkür kartı oluşturup PNG indirme / paylaşma | ★★★★★ | ★★★ | ✅ Yapıldı |
 | 3 | Öğretmen fotoğrafı desteği (izinli) | ★★★★☆ | ★☆☆ | ✅ Altyapı hazır |
 | 4 | Atatürk'ün sözleri dönüşümlü | ★★★☆☆ | ★☆☆ | ✅ Yapıldı |
@@ -509,8 +509,10 @@ Sayılarla değil, anlarla:
 
 ## 23. Bu sürümde yapılanlar
 
-- [x] **Okul bahçesi sahnesi:** ekranın altında çimen, çiçekler, okul binası ve ağaç.
-- [x] **Tepki veren çocuklar:** 3B öğrenci karakterleri; doğru cevapta zıplayıp kalp çıkarıyorlar, yanlışta eğiliyorlar, sonuçta sevinçle zıplıyorlar.
+- [x] ~~Okul bahçesi ve tepki veren çocuklar~~ — denendi, alakasız durduğu için kaldırıldı. Çocuk görseli istenirse izinli bir okul fotoğrafıyla yeniden düşünülebilir (§8.4).
+- [x] **QR ile doğrudan sorular:** `?direkt` adresi giriş ekranını atlar.
+- [x] **İsimsiz oy kaydı:** her cevap Firebase'e kaydedilir, kişi başı soru başı tek oy.
+- [x] **Yönetici paneli (`yonetici.html`):** Google girişi, her soruda kaç kişinin hangi hocaya oy verdiği canlı, QR, CSV indirme, sıfırlama.
 - [x] **Teşekkür kartı:** öğretmen seç, mesaj yaz (hazır cümleler var), adını yaz, tema seç; canlı önizleme, PNG indirme, telefonda paylaşma.
 - [x] **İthaf cümlesi:** girişte "bize okumayı, düşünmeyi, hayal etmeyi öğreten öğretmenlerimize".
 - [x] **Dönüşümlü Atatürk sözleri:** polaroidin altında 4 söz sırayla değişiyor.
