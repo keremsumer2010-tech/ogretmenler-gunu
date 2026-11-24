@@ -6,6 +6,13 @@
 <meta name="theme-color" content="#fbf5ec">
 <title>24 Kasım Öğretmenler Günü · Hocalarımızı Tanıyor musun?</title>
 <link rel="icon" href="img/apple.png">
+<meta name="description" content="Bize okumayı, düşünmeyi ve hayal etmeyi öğreten öğretmenlerimizi ne kadar tanıyoruz? Oyna, sonra hocana bir teşekkür kartı yaz.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="24 Kasım Öğretmenler Günü · Hocalarımızı ne kadar tanıyorsun?">
+<meta property="og:description" content="Öğretmenlerimizi biraz daha tanıyalım ve onlara teşekkür edelim. Oyna, sonra hocana bir teşekkür kartı yaz.">
+<meta property="og:image" content="https://keremsumer2010-tech.github.io/ogretmenler-gunu/img/apple.png">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600;1,9..144,700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -41,7 +48,7 @@ img{user-select:none;-webkit-user-drag:none}
 
 /* ===== Yerleşim ===== */
 .layout{position:relative;z-index:3;height:100%;display:grid;grid-template-columns:1fr minmax(0,580px) 1fr;
-  align-items:center;gap:3vw;padding:120px 3vw 44px}
+  align-items:center;gap:3vw;padding:118px 3vw 128px}
 .side{display:flex;justify-content:center;align-items:center;min-width:0}
 
 /* ===== Polaroid ===== */
@@ -233,8 +240,84 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   background:rgba(255,255,255,.85);backdrop-filter:blur(6px);box-shadow:var(--sh-sm);transition:transform .25s var(--spring)}
 .sound img{width:28px;height:28px}
 .sound:hover{transform:scale(1.1) rotate(-8deg)}
-.foot{position:fixed;left:0;right:0;bottom:12px;text-align:center;font-family:var(--hand);font-size:21px;color:#c0a097;z-index:3;pointer-events:none}
+.fs{right:80px}
+.fs svg{width:24px;height:24px;stroke:var(--ink2)}
 #fx{position:fixed;inset:0;z-index:60;pointer-events:none}
+
+/* ===== Okul bahçesi ===== */
+.yard{position:fixed;left:0;right:0;bottom:0;height:150px;z-index:2;pointer-events:none}
+.yard svg.hill{position:absolute;left:0;bottom:0;width:100%;height:100%}
+.yard .school{position:absolute;left:1.5%;bottom:58px;width:118px;filter:drop-shadow(0 10px 10px rgba(60,90,30,.25))}
+.yard .tree{position:absolute;right:1%;bottom:46px;width:132px;filter:drop-shadow(0 10px 10px rgba(60,90,30,.25))}
+.kid{position:absolute;bottom:34px;width:82px;translate:-50% 0;animation:kidIdle 3.2s ease-in-out infinite;animation-delay:var(--d)}
+.kid img{width:100%;display:block;transform-origin:50% 100%;filter:drop-shadow(0 8px 8px rgba(60,40,20,.2))}
+@keyframes kidIdle{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2deg)}}
+.yard.cheer .kid img{animation:kidJump .7s var(--spring) both;animation-delay:var(--j)}
+@keyframes kidJump{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-34px) scale(1.06) rotate(-6deg)}70%{transform:translateY(0) scale(1.04,.94)}100%{transform:none}}
+.yard.sad .kid img{animation:kidSad 1.1s ease both;animation-delay:var(--j)}
+@keyframes kidSad{0%{transform:none}30%,70%{transform:translateY(16px) rotate(-8deg) scale(.96)}100%{transform:none}}
+.yard.party .kid img{animation:kidParty .55s ease-in-out infinite alternate;animation-delay:var(--j)}
+@keyframes kidParty{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-26px) rotate(5deg)}}
+.yard .front{position:absolute;inset:0}
+.flower{position:absolute;bottom:8px;width:34px;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes sway{0%,100%{rotate:-6deg}50%{rotate:6deg}}
+.pop-heart{position:fixed;width:30px;z-index:5;pointer-events:none;animation:rise 1.4s ease-out forwards}
+@keyframes rise{from{transform:translateY(0) scale(.4);opacity:0}20%{opacity:1;transform:translateY(-20px) scale(1)}to{transform:translateY(-110px) scale(.9) rotate(12deg);opacity:0}}
+.bouquet{position:absolute;left:50%;bottom:18px;width:84px;translate:-50% 0;transform:scale(0);transform-origin:50% 100%;transition:transform .8s var(--spring);filter:drop-shadow(0 10px 10px rgba(60,40,20,.25))}
+.yard.gift .bouquet{transform:scale(1)}
+
+/* ===== Seçeneklerin sırayla gelişi ===== */
+.card.top.deal .icon{animation:dealPop .6s .05s var(--spring) both}
+.card.top.deal .qlabel,.card.top.deal .qtext{animation:dealUp .55s .18s ease both}
+.card.top.deal .opt:nth-child(1){animation:dealOpt .6s .38s var(--spring) both}
+.card.top.deal .opt:nth-child(2){animation:dealOpt2 .6s .52s var(--spring) both}
+@keyframes dealPop{from{transform:scale(.3);opacity:0}}
+@keyframes dealUp{from{transform:translateY(14px);opacity:0}}
+@keyframes dealOpt{from{transform:translateY(40px) rotate(-6deg);opacity:0}}
+@keyframes dealOpt2{from{transform:translateY(40px) rotate(6deg);opacity:0}}
+.avatar{position:relative;overflow:hidden}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ===== Dönen sözler ===== */
+.quote{transition:opacity .6s,transform .6s}
+.quote.out{opacity:0;transform:translateY(6px)}
+
+/* ===== Teşekkür kartı ===== */
+.link{background:none;border:none;cursor:pointer;font-family:var(--sans);font-weight:800;font-size:15px;color:var(--red);margin-top:14px;display:inline-flex;align-items:center;gap:8px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.link img{width:24px;height:24px}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #efdcd2,0 5px 0 #efdcd2,var(--sh-sm)}
+.btn.alt::after{display:none}
+.final .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.final .row .btn{margin-top:0;font-size:17px;padding:14px 26px}
+.modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:24px;
+  background:rgba(60,30,20,.35);backdrop-filter:blur(8px)}
+.modal.open{display:flex;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}}
+.sheet{position:relative;width:min(1080px,100%);max-height:100%;overflow:auto;background:#fffdf9;border-radius:30px;box-shadow:0 40px 90px -30px rgba(40,10,5,.6);
+  display:grid;grid-template-columns:380px 1fr;gap:28px;padding:30px;animation:sheetIn .6s var(--spring)}
+@keyframes sheetIn{from{transform:translateY(40px) scale(.96);opacity:0}}
+.sheet h3{font-family:var(--serif);font-size:32px;font-weight:800;line-height:1;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.sheet h3 img{width:40px;height:40px}
+.sheet .sub{color:var(--muted);font-weight:600;font-size:14.5px;margin:6px 0 16px}
+.field{margin-bottom:14px;text-align:left}
+.field label{display:block;font-weight:900;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field select,.field input,.field textarea{width:100%;font-family:var(--sans);font-size:16px;font-weight:700;color:var(--ink);background:#fff;border:2px solid #efdfd6;border-radius:14px;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.field textarea{resize:none;height:96px;line-height:1.4;font-weight:600}
+.field :focus{border-color:#ff9aa0;box-shadow:0 0 0 4px rgba(227,10,23,.1)}
+.count{font-size:12px;color:var(--muted);text-align:right;margin-top:4px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip2{border:none;cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:700;color:var(--ink2);background:#fdf0ea;border-radius:999px;padding:5px 11px;transition:background .2s,transform .2s}
+.chip2:hover{background:#ffe0dc;transform:translateY(-1px)}
+.themes{display:flex;gap:8px}
+.theme{flex:1;border:none;cursor:pointer;border-radius:12px;padding:10px 6px;font-family:var(--sans);font-weight:800;font-size:13px;box-shadow:inset 0 0 0 2px #efdfd6;background:#fff;color:var(--ink2);transition:box-shadow .2s}
+.theme i{display:block;height:18px;border-radius:6px;margin-bottom:6px}
+.theme.on{box-shadow:inset 0 0 0 2.5px var(--red)}
+.preview{display:flex;flex-direction:column;gap:14px;min-width:0}
+.preview canvas{width:100%;height:auto;border-radius:16px;box-shadow:0 26px 50px -24px rgba(60,20,10,.5)}
+.preview .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.preview .btn{margin-top:0;font-size:17px;padding:14px 26px}
+.close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;background:#f7ece6;font-size:22px;font-weight:900;color:var(--ink2);line-height:40px;z-index:2}
+.saved{font-family:var(--hand);font-size:24px;color:var(--green);text-align:center;min-height:28px}
 
 /* ===== Duyarlı ===== */
 @media (max-width:1200px){
@@ -250,8 +333,20 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   .quote{text-align:left;font-size:18px}
   .tape{width:74px;height:24px;top:-11px}
   .stage{max-width:580px}
-  .sticker,.foot,.hint{display:none}
+  .sticker,.hint{display:none}
+  .layout{padding-bottom:120px}
+  html,body{height:auto}
+  body{position:relative;min-height:100vh}
+  .yard{height:96px;position:absolute}
+  .kid{width:54px;bottom:22px}
+  .yard .school{width:70px;bottom:36px} .yard .tree{width:80px;bottom:30px}
+  .flower{width:24px}
+  .bouquet{width:60px}
+  .sound{bottom:12px;right:12px} .fs{right:72px;bottom:12px}
+  .sheet{grid-template-columns:1fr;padding:22px 18px;gap:18px}
+  .modal{padding:10px;align-items:flex-start}
 }
+@media (max-height:860px) and (min-width:841px){ .hint{display:none} h1{font-size:clamp(40px,5vw,64px);margin:16px 0 12px} .fact{margin-top:14px} .btn{margin-top:22px} }
 @media (max-width:430px){
   .face{padding:20px 16px}
   .options{gap:10px}
@@ -279,7 +374,7 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
       </div>
       <figcaption>
         <div class="cap">Başöğretmenimiz</div>
-        <div class="quote">“Öğretmenler! Yeni nesil sizin eseriniz olacaktır.”</div>
+        <div class="quote" id="quote">“Öğretmenler! Yeni nesil sizin eseriniz olacaktır.”</div>
       </figcaption>
     </figure>
   </aside>
@@ -293,9 +388,10 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
         <img class="sticker" src="img/cap.png"    alt="" data-d="-24" style="right:-80px;bottom:60px;--r:-8deg;animation-delay:-3.4s">
         <span class="eyebrow"><span class="date">24 Kasım</span> Öğretmenler Günü</span>
         <h1>Hocalarımızı<br><em id="waveWord">ne kadar</em><br><span class="u">tanıyorsun?<svg viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M4 16 C 70 6, 150 4, 296 13" stroke="#f2b632" stroke-width="7" fill="none" stroke-linecap="round"/></svg></span></h1>
-        <p class="lead">Her kartta iki öğretmenimiz var. Soruyu oku, doğru hocayı seç. Bakalım onları ne kadar tanıyorsun!</p>
+        <p class="lead">Bize okumayı, düşünmeyi ve hayal etmeyi öğreten öğretmenlerimizi aslında ne kadar tanıyoruz? Her kartta iki hoca var, doğru olanı seç.</p>
         <div class="fact"><img src="img/bulb.png" alt=""><span><b>Biliyor muydun?</b> Atatürk, 24 Kasım 1928'de “Başöğretmen” unvanını kabul etti. Öğretmenler Günü'nü bu yüzden 24 Kasım'da kutluyoruz.</span></div>
         <button class="btn" id="startBtn">Başlayalım <img src="img/sparkles.png" alt=""></button>
+        <div><button class="link" id="introCard"><img src="img/letter.png" alt="">ya da doğrudan hocana teşekkür kartı yaz</button></div>
         <div class="hint">Klavyeyle de oynayabilirsin: <kbd>1</kbd> <kbd>2</kbd> veya <kbd>←</kbd> <kbd>→</kbd></div>
       </div>
     </section>
@@ -324,7 +420,10 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
         <div class="thanks">Tüm öğretmenlerimizin Öğretmenler Günü kutlu olsun!</div>
         <div class="hearts"><img src="img/heart.png" alt=""><img src="img/heart.png" alt="" style="animation-delay:.15s"><img src="img/heart.png" alt="" style="animation-delay:.3s"></div>
         <details class="ak"><summary><img src="img/clipboard.png" alt="">Cevap anahtarını gör</summary><ul id="keyList"></ul></details>
-        <button class="btn" id="againBtn">Tekrar Oyna</button>
+        <div class="row">
+          <button class="btn" id="endCard"><img src="img/letter.png" alt="">Hocana teşekkür kartı yaz</button>
+          <button class="btn alt" id="againBtn">Tekrar Oyna</button>
+        </div>
       </div>
     </section>
   </main>
@@ -345,8 +444,51 @@ details.ak li i{font-style:normal;font-weight:900;width:18px;text-align:center}
   </aside>
 </div>
 
-<div class="foot">iyi ki varsınız</div>
+<!-- Okul bahçesi -->
+<div class="yard" id="yard" aria-hidden="true">
+  <svg class="hill" viewBox="0 0 1440 150" preserveAspectRatio="none"><defs><linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9e6a0"/><stop offset="1" stop-color="#a9d47c"/></linearGradient></defs>
+    <path d="M0 78 C 220 40, 470 46, 720 66 S 1210 38, 1440 60 V150 H0Z" fill="url(#hb)"/></svg>
+  <img class="school" src="img/school.png" alt="">
+  <img class="tree" src="img/tree.png" alt="">
+  <div id="kids"></div>
+  <img class="bouquet" src="img/bouquet.png" alt="">
+  <svg class="hill front" viewBox="0 0 1440 150" preserveAspectRatio="none"><defs><linearGradient id="hf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93cb5f"/><stop offset="1" stop-color="#5f9c3c"/></linearGradient></defs>
+    <path d="M0 112 C 280 84, 560 96, 860 106 S 1290 82, 1440 100 V150 H0Z" fill="url(#hf)"/>
+    <path d="M0 112 C 280 84, 560 96, 860 106 S 1290 82, 1440 100" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/></svg>
+  <div id="flowers"></div>
+</div>
+
+<!-- Teşekkür kartı -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="cardTitle">
+  <div class="sheet">
+    <button class="close" id="closeModal" aria-label="Kapat">×</button>
+    <div>
+      <h3 id="cardTitle"><img src="img/letter.png" alt="">Teşekkür Kartı</h3>
+      <p class="sub">Hocana kendi cümlelerinle teşekkür et. Kart sadece senin cihazında oluşur, hiçbir yere gönderilmez.</p>
+      <div class="field"><label for="tTeacher">Kime?</label><select id="tTeacher"></select></div>
+      <div class="field"><label for="tMsg">Mesajın</label><textarea id="tMsg" maxlength="220" placeholder="Hocana ne söylemek istersin?"></textarea>
+        <div class="count"><span id="tCount">0</span>/220</div>
+        <div class="chips" id="chips"></div></div>
+      <div class="field"><label for="tName">Adın (isteğe bağlı)</label><input id="tName" maxlength="40" placeholder="Örn. Kerem, 9-B"></div>
+      <div class="field"><label>Kart teması</label><div class="themes" id="themes">
+        <button class="theme on" data-t="kagit"><i style="background:linear-gradient(135deg,#fffaf0,#f3e6d2)"></i>Kâğıt</button>
+        <button class="theme" data-t="bayrak"><i style="background:linear-gradient(135deg,#ff2a36,#b8060f)"></i>Al bayrak</button>
+        <button class="theme" data-t="tahta"><i style="background:linear-gradient(135deg,#2f5141,#1d3429)"></i>Kara tahta</button>
+      </div></div>
+    </div>
+    <div class="preview">
+      <canvas id="cardCanvas" width="1600" height="1000"></canvas>
+      <div class="row">
+        <button class="btn" id="dlCard">Kartı indir</button>
+        <button class="btn alt" id="shareCard" hidden>Paylaş</button>
+      </div>
+      <div class="saved" id="saved"></div>
+    </div>
+  </div>
+</div>
+
 <canvas id="fx"></canvas>
+<button class="sound fs" id="fsBtn" aria-label="Tam ekran"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 <button class="sound" id="soundBtn" aria-label="Ses aç / kapa"><img id="soundImg" src="img/speaker.png" alt=""></button>
 
 <script>
@@ -376,7 +518,10 @@ let idx=0, score=0, phase="intro", soundOn=true, results=[], advTimer=null;
 /* ---------- Yardımcılar ---------- */
 const initials=n=>n.replace(/…/g,"").trim().split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toLocaleUpperCase("tr")).join("");
 const colorOf=(i,k)=>AV[(i*2+k)%AV.length];
-const avatar=(n,c)=>`<span class="avatar" style="background:linear-gradient(160deg,${c[0]},${c[1]})">${initials(n)}</span>`;
+/* Hoca fotoğrafları: img/hocalar/ klasörüne koyup bunu true yap (dosya adları YOL-HARITASI.md'de) */
+const HOCA_FOTOLARI = false;
+const slug=n=>n.replace(/…/g,"").trim().toLocaleLowerCase("tr").replace(/ç/g,"c").replace(/ğ/g,"g").replace(/ı/g,"i").replace(/ö/g,"o").replace(/ş/g,"s").replace(/ü/g,"u").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const avatar=(n,c)=>`<span class="avatar" style="background:linear-gradient(160deg,${c[0]},${c[1]})">${initials(n)}${HOCA_FOTOLARI?`<img src="img/hocalar/${slug(n)}.jpg" alt="" onerror="this.remove()">`:""}</span>`;
 function show(id){ document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id===id)); phase=id; }
 // görselleri önceden yükle
 ["party","monkey","trophy","medal","star","apple","heart","muted"].forEach(n=>{new Image().src=`img/${n}.png`});
@@ -403,11 +548,12 @@ function layoutDeck(){
     const off=+c.dataset.i-idx; if(off<0) return;
     c.classList.remove("s1","s2","s3","top"); c.style.zIndex=100-off;
     c.classList.add(off===0?"top":off===1?"s1":off===2?"s2":"s3");
+    if(off===0) c.classList.add("deal");
   });
 }
 const topCard=()=>$(`.card[data-i="${idx}"]`);
 function startGame(){
-  idx=0; score=0; results=[]; clearTimeout(advTimer);
+  idx=0; score=0; results=[]; clearTimeout(advTimer); yardReact(null);
   $("#score").textContent=0; $("#qtotal").textContent=QUESTIONS.length;
   const deck=$("#deck"); deck.innerHTML="";
   QUESTIONS.forEach((_,i)=>deck.appendChild(makeCard(i)));
@@ -424,9 +570,9 @@ function choose(k){
   const r=opts[k].getBoundingClientRect();
   if(ok){
     score++; const s=$("#score"); s.textContent=score; s.classList.remove("pop"); void s.offsetWidth; s.classList.add("pop");
-    burst(r.left+r.width/2,r.top+r.height/2,90); ding(true);
+    burst(r.left+r.width/2,r.top+r.height/2,90); ding(true); yardReact("cheer");
   }else{
-    card.querySelector(".front").classList.add("shake"); ding(false);
+    card.querySelector(".front").classList.add("shake"); ding(false); yardReact("sad");
     setTimeout(()=>opts[d.answer].classList.add("correct"),220);
   }
   const back=card.querySelector(".back"), name=d.options[d.answer], last=idx===QUESTIONS.length-1;
@@ -499,7 +645,7 @@ function finish(){
   [...$("#stars").children].forEach((s,i)=>{ s.classList.remove("on"); if(i<on) setTimeout(()=>{s.classList.add("on"); blip(8+i*3);},600+i*320); });
   $("#keyList").innerHTML=QUESTIONS.map((d,i)=>`<li><i style="color:${results[i]?.ok?"#1f9d5c":"#e30a17"}">${results[i]?.ok?"✓":"✕"}</i><span>${d.q}</span><b>${d.options[d.answer]}</b></li>`).join("");
   $("#keyList").parentNode.open=false;
-  rain(p>=.4?4800:2600);
+  rain(p>=.4?4800:2600); yardReact("party");
   if(p>=.55){ fireworks(7); setTimeout(()=>ding(true),300); }
 }
 
@@ -705,6 +851,7 @@ $("#deck").addEventListener("pointerleave",()=>{ const c=topCard(); if(c){c.styl
 addEventListener("pointermove",e=>{ if(phase!=="intro") return; const x=e.clientX/innerWidth-.5, y=e.clientY/innerHeight-.5;
   document.querySelectorAll(".sticker").forEach(s=>{const d=+s.dataset.d; s.style.translate=`${x*d}px ${y*d}px`;}); });
 addEventListener("keydown",e=>{
+  if($("#modal").classList.contains("open")){ if(e.key==="Escape") closeCard(); return; }
   if(phase==="intro"&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); $("#startBtn").click(); }
   else if(phase==="game"){ if(e.key==="1"||e.key==="ArrowLeft") choose(0); if(e.key==="2"||e.key==="ArrowRight") choose(1); }
   else if(phase==="reveal"&&(e.key==="Enter"||e.key===" "||e.key==="ArrowRight")){ e.preventDefault(); advance(); }
@@ -718,6 +865,142 @@ if(img.complete&&img.naturalWidth===0) img.dispatchEvent(new Event("error"));
 
 $("#startBtn").onclick=e=>{ const r=e.currentTarget.getBoundingClientRect(); burst(r.left+r.width/2,r.top+r.height/2,80); ding(true); startGame(); };
 $("#againBtn").onclick=startGame;
+
+/* =========================================================
+   OKUL BAHÇESİ — çocuklar oyuna tepki verir
+   ========================================================= */
+const KIDS=[["student",11],["girl",19],["boy",27],["child",73],["wstudent",81],["mstudent",89]];
+$("#kids").innerHTML=KIDS.map(([k,x],i)=>`<span class="kid" style="left:${x}%;--d:${(-i*.53).toFixed(2)}s;--j:${(i*.07).toFixed(2)}s"><img src="img/${k}.png" alt=""></span>`).join("");
+$("#flowers").innerHTML=[3,15,23,33,40,60,67,77,86,97].map((x,i)=>`<img class="flower" src="img/${["tulip","sunflower","blossom"][i%3]}.png" alt="" style="left:${x}%;--d:${(-i*.7).toFixed(1)}s">`).join("");
+let yardT=null;
+function yardReact(type){
+  const y=$("#yard"); clearTimeout(yardT);
+  y.classList.remove("cheer","sad","party"); void y.offsetWidth;
+  if(!type){ y.classList.remove("gift"); return; }
+  y.classList.add(type);
+  if(type==="cheer"||type==="party") document.querySelectorAll(".kid").forEach((k,i)=>setTimeout(()=>{
+    const r=k.getBoundingClientRect(), h=document.createElement("img");
+    h.src="img/heart.png"; h.className="pop-heart"; h.style.left=`${r.left+r.width/2-15}px`; h.style.top=`${r.top-6}px`;
+    document.body.appendChild(h); setTimeout(()=>h.remove(),1500);
+  },i*90));
+  if(type!=="party") yardT=setTimeout(()=>y.classList.remove(type),1700);
+}
+
+/* =========================================================
+   DÖNEN ATATÜRK SÖZLERİ
+   ========================================================= */
+const QUOTES=[
+  "“Öğretmenler! Yeni nesil sizin eseriniz olacaktır.”",
+  "“Öğretmenler! Cumhuriyet sizden fikri hür, vicdanı hür, irfanı hür nesiller ister.”",
+  "“Hayatta en hakiki mürşit ilimdir.”",
+  "“Eğitimdir ki bir milleti ya hür, bağımsız, şanlı, yüksek bir topluluk halinde yaşatır; ya da esaret ve sefalete terk eder.”"
+];
+let qi=0;
+setInterval(()=>{ const q=$("#quote"); q.classList.add("out"); setTimeout(()=>{ qi=(qi+1)%QUOTES.length; q.textContent=QUOTES[qi]; q.classList.remove("out"); },600); },9000);
+
+/* ---------- Tam ekran (akıllı tahta için) ---------- */
+if(!document.fullscreenEnabled) $("#fsBtn").hidden=true;
+$("#fsBtn").onclick=()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen(); };
+
+/* =========================================================
+   TEŞEKKÜR KARTI — tamamen cihazda oluşturulur
+   ========================================================= */
+const SUGGEST=[
+  "Bize sabırla öğrettiğiniz her şey için çok teşekkür ederiz.",
+  "Bana sadece dersi değil, iyi bir insan olmayı da öğrettiniz.",
+  "Sizin sayenizde okulu daha çok seviyorum. İyi ki öğretmenimsiniz!",
+  "Emekleriniz için sonsuz teşekkürler. Öğretmenler Gününüz kutlu olsun!",
+  "Derslerinizi her zaman dört gözle bekliyorum."
+];
+const TEACHERS=[...new Set(QUESTIONS.flatMap(d=>d.options))];
+const cleanName=n=>n.replace(/…/g,"").replace(/\s+/g," ").trim();
+$("#tTeacher").innerHTML=`<option value="">Tüm öğretmenlerim</option>`+TEACHERS.map(t=>`<option value="${cleanName(t)}">${cleanName(t)}</option>`).join("");
+$("#chips").innerHTML=SUGGEST.map((s,i)=>`<button class="chip2" data-i="${i}">${s.length>34?s.slice(0,32)+"…":s}</button>`).join("");
+$("#chips").addEventListener("click",e=>{ const b=e.target.closest(".chip2"); if(!b) return; $("#tMsg").value=SUGGEST[+b.dataset.i]; updCount(); drawCard(); });
+let cardTheme="kagit", fontsReady=false;
+$("#themes").addEventListener("click",e=>{ const b=e.target.closest(".theme"); if(!b) return;
+  document.querySelectorAll(".theme").forEach(t=>t.classList.toggle("on",t===b)); cardTheme=b.dataset.t; drawCard(); });
+function updCount(){ $("#tCount").textContent=$("#tMsg").value.length; }
+["tTeacher","tMsg","tName"].forEach(id=>$("#"+id).addEventListener("input",()=>{ updCount(); drawCard(); }));
+const CI={}; ["apple","pencil","heart","sparkheart"].forEach(n=>{ CI[n]=new Image(); CI[n].src=`img/${n}.png`; CI[n].onload=()=>drawCard(); });
+const flagMini=document.createElement("canvas"); flagMini.width=300; flagMini.height=200; drawTurkishFlag(flagMini.getContext("2d"),300,200,"");
+
+function wrap(c,text,maxW){ const words=text.split(/\s+/), lines=[]; let line="";
+  for(const w of words){ const t=line?line+" "+w:w; if(c.measureText(t).width>maxW&&line){ lines.push(line); line=w; } else line=t; }
+  if(line) lines.push(line); return lines; }
+function drawCard(){
+  const cv=$("#cardCanvas"), c=cv.getContext("2d"), W=1600, H=1000;
+  const T={
+    kagit:{ink:"#2b1d1a",pen:"#1d3b8f",acc:"#e30a17",mute:"#9a827c",quote:"#6b5550"},
+    bayrak:{ink:"#ffffff",pen:"#ffffff",acc:"#ffe7a8",mute:"rgba(255,255,255,.75)",quote:"rgba(255,255,255,.85)"},
+    tahta:{ink:"#f6f3ea",pen:"#f6f3ea",acc:"#ffd166",mute:"rgba(246,243,234,.7)",quote:"rgba(246,243,234,.8)"}
+  }[cardTheme];
+  c.save(); c.clearRect(0,0,W,H);
+  // zemin
+  if(cardTheme==="kagit"){
+    const g=c.createLinearGradient(0,0,W,H); g.addColorStop(0,"#fffbf2"); g.addColorStop(1,"#f2e5cf"); c.fillStyle=g; c.fillRect(0,0,W,H);
+    c.strokeStyle="rgba(70,110,190,.14)"; c.lineWidth=2; for(let y=250;y<H-120;y+=62){ c.beginPath(); c.moveTo(60,y); c.lineTo(W-60,y); c.stroke(); }
+    c.strokeStyle="rgba(227,10,23,.35)"; c.beginPath(); c.moveTo(130,40); c.lineTo(130,H-40); c.stroke();
+    c.strokeStyle="rgba(227,10,23,.55)"; c.lineWidth=3; c.strokeRect(28,28,W-56,H-56); c.lineWidth=1.5; c.strokeRect(40,40,W-80,H-80);
+  }else if(cardTheme==="bayrak"){
+    const g=c.createRadialGradient(W*.35,H*.3,50,W*.5,H*.5,W*.8); g.addColorStop(0,"#ff2a36"); g.addColorStop(1,"#a8050d"); c.fillStyle=g; c.fillRect(0,0,W,H);
+    for(let y=0;y<H;y+=3){ c.fillStyle=`rgba(0,0,0,${.03+Math.random()*.02})`; c.fillRect(0,y,W,1); }
+    const wm=document.createElement("canvas"); wm.width=W; wm.height=H; const w=wm.getContext("2d");
+    w.fillStyle="#fff"; w.beginPath(); w.arc(1240,560,330,0,7); w.fill();
+    w.globalCompositeOperation="destination-out"; w.beginPath(); w.arc(1320,560,265,0,7); w.fill();
+    c.globalAlpha=.08; c.drawImage(wm,0,0); c.globalAlpha=1;
+    c.strokeStyle="rgba(255,255,255,.6)"; c.lineWidth=3; c.strokeRect(30,30,W-60,H-60);
+  }else{
+    c.fillStyle="#8a5a33"; c.fillRect(0,0,W,H);
+    const g=c.createLinearGradient(0,0,W,H); g.addColorStop(0,"#2f5443"); g.addColorStop(1,"#1a3227"); c.fillStyle=g; c.fillRect(30,30,W-60,H-60);
+    for(let i=0;i<5000;i++){ c.fillStyle=`rgba(255,255,255,${Math.random()*.04})`; c.fillRect(30+Math.random()*(W-60),30+Math.random()*(H-60),2,2); }
+    c.strokeStyle="rgba(0,0,0,.35)"; c.lineWidth=4; c.strokeRect(30,30,W-60,H-60);
+  }
+  // bayrak + başlık
+  c.save(); c.shadowColor="rgba(0,0,0,.25)"; c.shadowBlur=14; c.shadowOffsetY=6;
+  if(cardTheme==="bayrak"){ c.fillStyle="#fff"; c.fillRect(86,76,158,108); }
+  c.drawImage(flagMini,90,80,150,100); c.restore();
+  c.textBaseline="alphabetic"; c.textAlign="left";
+  c.fillStyle=T.acc; c.font="900 40px Nunito, sans-serif"; c.fillText("24 KASIM",272,122);
+  c.fillStyle=T.mute; c.font="800 28px Nunito, sans-serif"; try{c.letterSpacing="4px";}catch(e){} c.fillText("ÖĞRETMENLER GÜNÜ",272,164); try{c.letterSpacing="0px";}catch(e){}
+  if(CI.apple.complete){ c.save(); c.translate(1440,140); c.rotate(.18); c.drawImage(CI.apple,-75,-75,150,150); c.restore(); }
+  // hitap
+  const t=$("#tTeacher").value, first=t?t.split(" ")[0]:"";
+  c.fillStyle=T.ink; c.font="700 96px Caveat, cursive"; c.fillText(t?`Sevgili ${first} Hocam,`:"Sevgili Öğretmenlerim,",170,318);
+  // mesaj
+  const msg=$("#tMsg").value.trim()||"Mesajın burada görünecek...";
+  c.globalAlpha=$("#tMsg").value.trim()?1:.45; c.fillStyle=T.pen;
+  let fs=72, lines; do{ c.font=`600 ${fs}px Caveat, cursive`; lines=wrap(c,msg,1240); fs-=4; }while(lines.length*fs*1.12>380&&fs>36);
+  fs+=4; lines.forEach((l,i)=>c.fillText(l,190,425+i*fs*1.12)); c.globalAlpha=1;
+  // imza
+  const name=$("#tName").value.trim()||"Öğrenciniz";
+  c.textAlign="right"; c.fillStyle=T.ink; c.font="700 70px Caveat, cursive"; c.fillText("— "+name,1450,850);
+  if(CI.heart.complete) c.drawImage(CI.heart,1462,800,56,56);
+  if(CI.pencil.complete){ c.save(); c.translate(150,860); c.rotate(-.1); c.drawImage(CI.pencil,-60,-60,120,120); c.restore(); }
+  // Atatürk sözü
+  c.textAlign="center"; c.fillStyle=T.quote; c.font="italic 600 30px Fraunces, Georgia, serif";
+  c.fillText("“Öğretmenler! Yeni nesil sizin eseriniz olacaktır.”  — Mustafa Kemal Atatürk",W/2,940);
+  c.restore();
+}
+document.fonts.ready.then(()=>Promise.all(["700 96px Caveat","600 72px Caveat","900 40px Nunito","italic 600 30px Fraunces"].map(f=>document.fonts.load(f)))).then(()=>{fontsReady=true; drawCard();});
+function openCard(){ $("#modal").classList.add("open"); $("#saved").textContent=""; drawCard(); setTimeout(()=>$("#tMsg").focus({preventScroll:true}),300); }
+function closeCard(){ $("#modal").classList.remove("open"); }
+$("#introCard").onclick=openCard; $("#endCard").onclick=openCard; $("#closeModal").onclick=closeCard;
+$("#modal").addEventListener("click",e=>{ if(e.target.id==="modal") closeCard(); });
+const cardBlob=()=>new Promise(r=>$("#cardCanvas").toBlob(r,"image/png"));
+const cardFileName=()=>`tesekkur-karti-${slug($("#tTeacher").value)||"ogretmenlerim"}.png`;
+function celebrateCard(){ $("#yard").classList.add("gift"); yardReact("cheer"); ding(true);
+  const r=$("#cardCanvas").getBoundingClientRect(); burst(r.left+r.width/2,r.top+r.height/2,100); }
+$("#dlCard").onclick=async()=>{
+  const b=await cardBlob(), a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=cardFileName();
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  $("#saved").textContent="Kartın indirildi! Hocana göndermeyi unutma ♥"; celebrateCard();
+};
+try{ if(navigator.canShare&&navigator.canShare({files:[new File([""],"k.png",{type:"image/png"})]})) $("#shareCard").hidden=false; }catch(e){}
+$("#shareCard").onclick=async()=>{
+  const f=new File([await cardBlob()],cardFileName(),{type:"image/png"});
+  try{ await navigator.share({files:[f],title:"Öğretmenler Günü",text:"Öğretmenler Gününüz kutlu olsun!"}); $("#saved").textContent="Paylaşıldı ♥"; celebrateCard(); }catch(e){}
+};
 /* 3B ikonlar: Microsoft Fluent Emoji (MIT Lisansı) · Atatürk fotoğrafı: Wikimedia Commons (kamu malı) */
 </script>
 </body>
