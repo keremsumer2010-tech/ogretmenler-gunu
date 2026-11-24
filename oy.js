@@ -10,9 +10,14 @@ const DB = FIREBASE_CONFIG.databaseURL;
 const auth = getAuth(initializeApp(FIREBASE_CONFIG));
 
 let userP = null;
+// Önce kayıtlı oturumu bekle; yalnızca hiç oturum yoksa isimsiz giriş yap
+// (aynı tarayıcıda açık olan yönetici oturumunu ezmemek için)
 const user = () => (userP = userP || new Promise((res, rej) => {
-  const stop = onAuthStateChanged(auth, u => { if(u){ stop(); res(u); } });
-  signInAnonymously(auth).catch(e => { stop(); userP = null; rej(e); });
+  const stop = onAuthStateChanged(auth, u => {
+    stop();
+    if(u) res(u);
+    else signInAnonymously(auth).then(c => res(c.user), e => { userP = null; rej(e); });
+  });
 }));
 user().catch(() => {}); // sayfa açılınca arka planda giriş yap
 

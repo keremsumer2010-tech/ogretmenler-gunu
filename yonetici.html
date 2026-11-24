@@ -171,7 +171,7 @@ main{max-width:1400px;margin:0 auto;padding:6px 28px 48px}
 
 <script src="sorular.js"></script>
 <script type="module">
-import { db, auth, googleLogin, currentUser, ref, get, set, remove, onValue, signOut } from "./fb.js";
+import { db, auth, googleLogin, onAuthStateChanged, ref, get, set, remove, onValue, signOut } from "./fb.js";
 const $ = s => document.querySelector(s);
 const Q = window.SORULAR, C = ["#e8414f", "#2f7fd6"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
@@ -191,7 +191,7 @@ async function route(u){
 
 $("#loginBtn").onclick = async () => {
   $("#loginErr").textContent = "";
-  try{ await route(await googleLogin()); }
+  try{ await googleLogin(); }
   catch(e){ $("#loginErr").textContent = e.code === "auth/popup-closed-by-user" ? "Giriş penceresi kapatıldı." : "Giriş yapılamadı: " + (e.code || e.message); }
 };
 const out = async () => { await signOut(auth); view("vLogin"); };
@@ -229,7 +229,7 @@ function build(){
         <div class="bar"><i id="b${i}_${k}"></i></div></div>`).join("")}
       <div class="foot"><span id="f${i}"></span><button class="reveal" data-i="${i}"></button></div>
     </div>`).join("");
-  $("#grid").addEventListener("click", e => { const b = e.target.closest(".reveal"); if(!b) return; toggle(+b.dataset.i); });
+
   applyShown();
 }
 function applyShown(){
@@ -241,6 +241,7 @@ function applyShown(){
   $("#revealAll").textContent = shown.size === Q.length ? "Tüm cevapları gizle" : "Tüm cevapları göster";
 }
 const failSave = e => alert("Kaydedilemedi: " + e.message);
+$("#grid").addEventListener("click", e => { const b = e.target.closest(".reveal"); if(!b) return; toggle(+b.dataset.i); });
 function toggle(i){
   if(shown.has(i)){ remove(ref(db, `reveal/${i}`)).catch(failSave); return; }
   const c = $("#q" + i); c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop");
@@ -286,7 +287,8 @@ $("#resetBtn").onclick = async () => {
   try{ await remove(ref(db, "votes")); await remove(ref(db, "reveal")); }catch(e){ alert("Silinemedi: " + e.message); }
 };
 
-currentUser().then(route);
+// Oturum değişirse (giriş/çıkış ya da başka sekmede değişim) paneli ona göre güncelle
+onAuthStateChanged(auth, route);
 </script>
 </body>
 </html>
